@@ -54,19 +54,19 @@ router.post("/post", isLoggedIn, async function(req, res, next) {
       username: req.session.passport.user
     });
 
-    console.log("User:", user); // Log user object
+    // console.log("User:", user); // Log user object
 
     const post = new postModel({
       content: req.body.content,
       author: user._id
     });
 
-    console.log("Post:", post); // Log post object
+    // console.log("Post:", post); // Log post object
     await post.save();
 
     user.posts.push(post._id);
     await user.save();
-    console.log("User after saving:", user); // Log user object after saving
+    // console.log("User after saving:", user); // Log user object after saving
 
     res.redirect("/feed");
   } catch (error) {
@@ -77,7 +77,7 @@ router.post("/post", isLoggedIn, async function(req, res, next) {
 
 
 router.post("/follow/:username", function(){
-
+  
 })
 
 router.post("/register", function (req, res) {
