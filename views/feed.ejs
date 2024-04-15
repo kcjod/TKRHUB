@@ -1,0 +1,210 @@
+<%- include('./partials/header') %>
+
+<nav class="bg-yellow-200 w-full h-[50px] z-50 fixed top-0">
+  <div
+    class="w-[95%] my-0 mx-auto h-full flex justify-between items-center max-w-[1024px] md:w-[80%]"
+  >
+    <div
+      class="flex w-[95%] font-semibold text-md lg:text-xl lg:w-[40%] items-center gap-1"
+    >
+      <img
+        class="h-[45px]"
+        src="/images/1000117438-removebg-preview.png"
+        alt=""
+      />
+      TKR Interview Bits
+    </div>
+    <div class="elems w-[40%] flex justify-between items-center">
+      <a href="/"
+        ><div
+          class="hidden px-2 py-3 hover:bg-yellow-500 hover:text-white lg:block"
+        >
+          Home
+        </div></a
+      >
+      <a href="/feed"
+        ><div
+          class="hidden px-2 py-3 hover:bg-yellow-500 hover:text-white lg:block"
+        >
+          Feed
+        </div></a
+      >
+      <a href="/logout"
+        ><div
+          class="hidden px-2 py-3 hover:bg-yellow-500 hover:text-white lg:block"
+        >
+          Logout
+        </div></a
+      >
+      <a href="/profile">
+        <img
+          src="../images/<%= user.profileimg %>"
+          alt=""
+          class="hidden h-[40px] rounded-full border-2 border-zinc-200 lg:block"
+        />
+      </a>
+      <div class="relative block lg:hidden">
+        <i
+          class="block ri-menu-3-line block cursor-pointer lg:hidden"
+          id="menu-icon"
+        ></i>
+        <ul
+          class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden"
+          id="dropdown-menu"
+        >
+          <a href="/"
+            ><li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Home</li></a
+          >
+          <a href="/feed"
+            ><li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Feed</li></a
+          >
+          <a href="/profile"
+            ><li class="cursor-pointer px-4 py-2 hover:bg-gray-100">
+              Profile
+            </li></a
+          >
+          <a href="/logout"
+            ><li class="cursor-pointer px-4 py-2 hover:bg-gray-100">
+              Logout
+            </li></a
+          >
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div
+  class="w-[80%] relative top-16 flex flex-col justify-center items-center mx-auto"
+>
+  <div>
+    <h1 class="font-medium text-3xl">
+      Have you ever gone through an interview?
+    </h1>
+  </div>
+  <div class="flex items-center gap-2">
+    <img
+      src="../images/<%= user.profileimg %>"
+      alt=""
+      class="hidden h-[40px] rounded-full border-2 border-zinc-200 lg:block"
+    />
+    <div
+      class="w-[80vw] h-[40px] bg-gray-100 my-2 px-4 py-2 rounded-3xl md:w-[40vw] lg:w-[30vw] cursor-pointer"
+      id="dropdownButton"
+    >
+      Start a post
+    </div>
+
+    <div
+      class="hidden fixed inset-0 bg-black opacity-50 z-50"
+      id="modalBackdrop"
+    ></div>
+
+    <!-- Dropdown form -->
+    <div
+      class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-md shadow-md z-50"
+      id="dropdownForm"
+    >
+      <form class="flex flex-col items-center" action="/post" method="post">
+        <textarea
+          class="w-[80vw] md:w-[45vw] lg:w-[40vw] h-[60vh] md:h-40 resize-none border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-yellow-400"
+          name="content"
+          placeholder="Share your experience"
+        ></textarea>
+        <input
+          type="submit"
+          value="Post"
+          class="w-[30vw] mt-2 bg-yellow-300 md:w-[15vw] lg:w-[5vw] hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Feed cards -->
+<div
+  id="feed-container"
+  class="w-[90%] relative top-16 flex flex-col justify-center items-center mx-auto mt-2 lg:w-[80%]"
+>
+  <% posts.forEach(function(post){ %>
+  <div
+    class="card w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 flex flex-col px-3 py-2 my-2 md:w-[90%]"
+  >
+    <div class="dets flex gap-2 relative items-center">
+      <img
+        src="../images/<%= post.author.profileimg %>"
+        alt=""
+        class="h-[40px] rounded-full"
+      />
+      <div class="font-semibold"><%= post.author.username %></div>
+      <div class="font-zinc-400">
+        <%= post.author.followers.length %> followers
+      </div>
+      <a href="/follow/:username"
+        ><button
+          class="bg-yellow-400 opacity-85 px-3 py-2 rounded-2xl text-white hover:opacity-100"
+        >
+          Follow
+        </button></a
+      >
+    </div>
+    <div class="hero flex flex-col items-center justify-center mx-auto mt-2">
+      <div class="content text-center" id="content">
+        <!-- Initial content with limited characters -->
+        <%= post.content %>
+      </div>
+      <button id="read-more-btn" class="hidden text-blue-500 hover:underline">
+        Read More
+      </button>
+      <button id="read-less-btn" class="hidden text-blue-500 hover:underline">
+        Read Less
+      </button>
+      <div class="btns flex h-[20px] justify-center items-center gap-5 my-2">
+        <!-- icons -->
+        <div class="cursor-pointer">
+          <i class="ri-thumb-up-line"></i>
+          <span class="text-zinc-600"><%= post.likes.length %></span>
+        </div>
+        <div class="cursor-pointer">
+          <i class="ri-chat-3-line"></i>
+          <span class="text-zinc-600"><%= post.comments.length %></span>
+        </div>
+        <div class="cursor-pointer">
+          <i class="ri-share-line"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% }) %>
+</div>
+
+<script>
+
+  const menuIcon = document.getElementById("menu-icon");
+  const dropdownMenu = document.getElementById("dropdown-menu");
+
+  menuIcon.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default behavior of the <i> element
+    dropdownMenu.classList.toggle("hidden");
+  });
+
+  // Get the button, modal backdrop, and dropdown form
+  var button = document.getElementById("dropdownButton");
+  var modalBackdrop = document.getElementById("modalBackdrop");
+  var dropdownForm = document.getElementById("dropdownForm");
+
+  // Show the modal and backdrop when the button is clicked
+  button.addEventListener("click", function () {
+    modalBackdrop.classList.remove("hidden");
+    dropdownForm.classList.remove("hidden");
+  });
+
+  // Hide the modal and backdrop when clicking outside the form
+  modalBackdrop.addEventListener("click", function () {
+    modalBackdrop.classList.add("hidden");
+    dropdownForm.classList.add("hidden");
+  });
+</script>
+
+<%- include('./partials/footer') %>
