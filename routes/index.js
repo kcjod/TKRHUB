@@ -32,7 +32,7 @@ router.get("/feed", isLoggedIn, async function(req, res, next) {
     const posts = await postModel.find().populate("author");
     const user = await userModel.findOne({username: req.session.passport.user});
 
-    console.log(posts); // Log the retrieved posts
+    //console.log(posts); // Log the retrieved posts
 
     // Render the 'feed' template with the retrieved posts
     res.render("feed", { posts: posts, user:user });
@@ -42,10 +42,10 @@ router.get("/feed", isLoggedIn, async function(req, res, next) {
 });
 
 
-router.get("/posts",async function(req,res){
-  const posts = await postModel.find();
-  res.send(posts);
-})
+// router.get("/posts",async function(req,res){
+//   const posts = await postModel.find();
+//   res.send(posts);
+// })
 
 
 // POST routes
@@ -56,19 +56,19 @@ router.post("/post", isLoggedIn, async function(req, res, next) {
       username: req.session.passport.user
     });
 
-    console.log("User:", user); // Log user object
+    //console.log("User:", user); // Log user object
 
     const post = new postModel({
       content: req.body.content,
       author: user._id
     });
 
-    console.log("Post:", post); // Log post object
+    //console.log("Post:", post); // Log post object
     await post.save();
 
     user.posts.push(post._id);
     await user.save();
-    console.log("User after saving:", user); // Log user object after saving
+    //console.log("User after saving:", user); // Log user object after saving
 
     res.redirect("/feed");
   } catch (error) {
