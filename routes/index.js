@@ -10,20 +10,20 @@ passport.use(new localStrategy(userModel.authenticate()));
 // GET routes
 
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', {nav: false});
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('signup', {err: req.flash('error')});
+  res.render('signup', {err: req.flash('error'), nav: false});
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login',{ err: req.flash("error")});
+  res.render('login',{ err: req.flash("error"), nav: false});
 });
 
 router.get('/profile', isLoggedIn, async function(req, res, next) {
   const user = await userModel.findOne({username: req.session.passport.user});
-  res.render('profile', {user: user});
+  res.render('profile', {user: user, nav: true});
 });
 
 router.get("/feed", isLoggedIn, async function(req, res, next) {
@@ -33,7 +33,7 @@ router.get("/feed", isLoggedIn, async function(req, res, next) {
     const user = await userModel.findOne({username: req.session.passport.user});
 
     // Render the 'feed' template with the retrieved posts
-    res.render("feed", { posts: posts, user:user });
+    res.render("feed", { posts: posts, user:user, nav: true });
   } catch (error) {
     next(error);
   }
