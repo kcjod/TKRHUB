@@ -58,8 +58,10 @@ router.post("/post", isLoggedIn, async function(req, res, next) {
 
     console.log("User:", user); // Log user object
 
+    const limitedContent = req.body.content;
     const post = new postModel({
-      content: req.body.content,
+      Truncatedcontent: limitedContent.slice(1, 150),
+      content:  req.body.content,
       author: user._id
     });
 
