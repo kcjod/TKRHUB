@@ -68,34 +68,38 @@
           class="flex h-[107px] w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1 py-3"
         >
           <div class="text-lg font-medium">Social links</div>
-          <div class="w-[20%] flex justify-around">
-          <% if(user.github && user.github.length> 0) { %>
-          <a href="<%= user.github %>" target="_blank">
-            <i class="ri-github-fill"></i>
-          </a>
-          <% } else { %>
-          <div class="text-slate-600 text-sm">
-            <span class="hidden"><i class="ri-github-fill"></i></span>
-          </div>
-          <% } %>
-          <% if(user.linkedin && user.linkedin.length> 0) { %>
-            <a href="<%= user.linkedin %>" target="_blank">
-                <i class="ri-linkedin-box-fill"></i>
-            </a>
-            <% } else { %>
-            <div class="text-slate-600 text-sm">
-              <span class="hidden"><i class="ri-linkedin-box-fill"></i></span>
-            </div>
-            <% } %>
-            <% if(user.instagram && user.instagram.length> 0) { %>
-                <a href="<%= user.instagram %>" target="_blank">
-                    <i class="ri-instagram-line"></i>
+          <div class="w-[100%] flex justify-around ">
+            <% if(user.github || user.linkedin || user.instagram) { %>
+                <% if(user.github && user.github.length> 0) { %>
+                    <a href="<%= user.github %>" target="_blank">
+                        <i class="ri-github-fill"></i>
+                    </a>
+                <% } else { %>
+                    <div class="text-slate-600 text-sm">
+                        <span class="hidden"><i class="ri-github-fill"></i></span>
+                    </div>
+                <% } %>
+                <% if(user.linkedin && user.linkedin.length> 0) { %>
+                <a href="<%= user.linkedin %>" target="_blank">
+                    <i class="ri-linkedin-box-fill"></i>
                 </a>
                 <% } else { %>
-                <div class="text-slate-600 text-sm">
-                  <span class="hidden"><i class="ri-instagram-line"></i></span>
-                </div>
+                    <div class="text-slate-600 text-sm">
+                        <span class="hidden"><i class="ri-linkedin-box-fill"></i></span>
+                    </div>
                 <% } %>
+                <% if(user.instagram && user.instagram.length> 0) { %>
+                    <a href="<%= user.instagram %>" target="_blank">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                <% } else { %>
+                    <div class="text-slate-600 text-sm">
+                        <span class="hidden"><i class="ri-instagram-line"></i></span>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <p class="text-sm">No social links added</p>            
+            <% } %>
         </div>
         </div>
       </div>
