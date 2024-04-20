@@ -21,15 +21,22 @@ router.get('/login', function(req, res, next) {
   res.render('login',{ err: req.flash("error"), nav: false});
 });
 
-router.get('/profile', isLoggedIn, async function(req, res, next) {
+router.get('/edit', async function(req, res, next) {
   const user = await userModel.findOne({username: req.session.passport.user});
+
+  res.render('edit',{ err: req.flash("error"), nav: true, user: user});
+});
+
+router.get('/profile', isLoggedIn, async function(req, res, next) {
+  const user = await userModel.findOne({username: req.session.passport.user}).populate("posts");
+
   res.render('profile', {user: user, nav: true});
 });
 
 router.get("/feed", isLoggedIn, async function(req, res, next) {
   try {
     // Retrieve all posts and populate the 'author' field with user details
-    const posts = await postModel.find().populate("author");
+    const posts = (await postModel.find().populate("author")).slice().reverse();
     const user = await userModel.findOne({username: req.session.passport.user});
 
     console.log(posts); // Log the retrieved posts
@@ -49,6 +56,37 @@ router.get("/feed", isLoggedIn, async function(req, res, next) {
 
 
 // POST routes
+
+
+router.post("/update", isLoggedIn, async function(req,res,next){
+  const user = await userModel.findOne({username: req.session.passport.user});
+
+  if(req.body.email.length>0){
+    user.email = req.body.email;
+  }
+  if(req.body.bio.length>0){
+    user.bio = req.body.bio;
+  }
+  if(req.body.clgname.length>0){
+    user.clgname = req.body.clgname;
+  }
+  if(req.body.branch.length>0){
+    user.branch = req.body.branch;
+  }
+  if(req.body.github.length>0){
+    user.github = req.body.github;
+  }
+  if(req.body.linkedin.length>0){
+    user.linkedin = req.body.linkedin;
+  }
+  if(req.body.instagram.length>0){
+    user.instagram = req.body.instagram;
+  }
+
+  await user.save();
+  res.redirect("/profile");
+
+});
 
 router.post("/post", isLoggedIn, async function(req, res, next) {
   try {

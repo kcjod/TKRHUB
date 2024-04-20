@@ -36,8 +36,11 @@ const userSchema = new mongoose.Schema({
   }],
   bio: String,
   clgname: String,
-  branch: String
-})
+  branch: String,
+  github: String,
+  linkedin: String,
+  instagram: String
+});
 
 userSchema.plugin(plm);
 
