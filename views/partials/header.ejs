@@ -22,16 +22,19 @@
 <body class="w-full">
 
   <% if(nav){ %>
-    <nav class="bg-yellow-200 w-full h-[50px]  z-50 fixed top-0">
+    <nav class="bg-yellow-200 w-full h-[60px]  z-50 fixed top-0">
       <div class="w-[95%] my-0 mx-auto h-full flex justify-between items-center w-[80%] md:w-[80%]">
-        <div class="flex w-[95%] font-semibold text-md lg:text-xl lg:w-[40%] items-center gap-1" id="logo">
+        <div class="flex w-[95%] font-semibold text-md lg:text-xl lg:w-[30vw] items-center gap-1" id="logo">
           <img class="h-[45px]" src="/images/1000117438-removebg-preview.png" alt="">
           TKR Interview Bits
         </div>
-        <div class="elems w-[40%] flex justify-between items-center ">
-          <a href="/">
-            <div class="hidden px-2 py-3 hover:bg-yellow-500 hover:text-white lg:block" id="elems">Home</div>
-          </a>
+
+        
+        <div class="elems lg:w-[70vw]  flex justify-around items-center ">
+          <div class="flex gap-2 items-center justify-center md:w-[30vw] sm:w-8 mr-5 sc">
+            <i class="ri-search-line font-bold text-2xl cursor-pointer"></i>
+            <input id="Searchinp" class="py-1 px-3 rounded-md lg:w-[30vw] md:w-[30vw] " placeholder="search..." type="text" name="searchProfiles" id="">
+          </div>  
           <a href="/feed">
             <div class="hidden px-2 py-3 hover:bg-yellow-500 hover:text-white lg:block" id="elems">Feed</div>
           </a>

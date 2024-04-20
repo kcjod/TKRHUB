@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+body{
+  font-family: ubuntu;
+}
 .alert {
   position: relative;
   padding: .75rem 1.25rem;
@@ -16,10 +21,25 @@
   display: none;
 }
 
+@media (max-width: 1024px) {
+  .sc{
+    width: 5vw;
+  }
+  #Searchinp{
+    display: none;
+  }
+  .elems{
+    width: 10vw;
+  }
+}
+
 @media (max-width: 642px) {
   .row1{
     display: flex;
     flex-direction: column;
     gap: 4px
+  }
+  .elems{
+    width: auto;
   }
 }
