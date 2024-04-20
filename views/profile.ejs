@@ -1,177 +1,272 @@
 <%- include('./partials/header') %>
 
-    <div class="w-[90vw] md:w-[80vw] mx-auto ">
-        <div class="w-full flex justify-between items-center relative top-[70px] px-4">
-            <div class="text-2xl font-bold">Profile</div>
-            <button class="mt-2 bg-yellow-300 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded-lg">Edit
-                Profile</button>
+<div class="w-[90vw] md:w-[80vw] mx-auto">
+  <div
+    class="w-full flex justify-between items-center relative top-[70px] px-4"
+  >
+    <div class="text-2xl font-bold">Profile</div>
+    <a href="/edit"
+      ><button
+        class="mt-2 bg-yellow-300 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded-lg"
+      >
+        Edit Profile
+      </button></a
+    >
+  </div>
+  <div
+    class="relative top-[100px] z-5 lg:flex md:flex sm:flex-col xs:flex-col gap-5"
+  >
+    <div
+      class="row1 w-full flex lg:flex md:flex lg:flex-row md:flex-row sm:flex-col md:flex-wrap lg:flex-nowrap items-center lg:gap-5 md:gap-0 sm:gap-2 justify-center"
+    >
+      <!-- profile img -->
+      <div
+        class="md:w-[48%] lg:w-[35%] flex w-full bg-blue-100 flex-col items-center rounded-xl gap-2 py-3"
+      >
+        <div>
+          <img
+            class="h-[100px] rounded-full my-2"
+            src="../images/<%= user.profileimg %>"
+            alt=""
+          />
         </div>
-        <div class="relative top-[100px] z-5 lg:flex md:flex sm:flex-col xs:flex-col gap-5">
-            <div class="row1 w-full flex lg:flex md:flex lg:flex-row md:flex-row sm:flex-col md:flex-wrap lg:flex-nowrap items-center lg:gap-5 md:gap-0 sm:gap-2 justify-center">
+        <div class="text-lg font-medium">@<%= user.username %></div>
+        <div class="stats w-[80%] flex justify-around gap-5">
+          <div class="flex flex-col items-center">
+            <div class="">Posts</div>
+            <div class="text-lg font-medium"><%= user.posts.length %></div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>Followers</div>
+            <div class="text-lg font-medium"><%= user.followers.length %></div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>Following</div>
+            <div class="text-lg font-medium"><%= user.following.length %></div>
+          </div>
+        </div>
+      </div>
 
-                <!-- profile img -->
-                <div class="md:w-[48%] lg:w-[35%] flex w-full bg-blue-100 flex-col items-center rounded-xl gap-2  py-3">
-                    <div><img class="h-[100px] rounded-full my-2" src="../images/<%= user.profileimg %>" alt="">
-                    </div>
-                    <div class="text-lg font-medium">@<%= user.username %>
-                    </div>
-                    <div class="stats w-[80%] flex justify-around gap-5">
-                        <div class="flex flex-col items-center">
-                            <div class="">Posts</div>
-                            <div class="text-lg font-medium">
-                                <%= user.posts.length %>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div>Followers</div>
-                            <div class="text-lg font-medium">
-                                <%= user.followers.length %>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div>Following</div>
-                            <div class="text-lg font-medium">
-                                <%= user.following.length %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <!-- bio and social container -->
+      <div
+        class="flex flex-col w-full md:w-[48%] lg:w-[35%] justify-center items-center lg:gap-5 md:gap-5 sm:gap-2 gap-1 lg:ml-0 md:ml-5"
+      >
+        <!-- bio -->
+        <div
+          class="flex h-[107px] w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1 py-3"
+        >
+          <div class="text-lg font-medium">Bio</div>
+          <% if(user.bio && user.bio.length> 0) { %>
+          <div><%= user.bio %></div>
+          <% } else { %>
+          <div class="text-slate-600 text-sm">Tell about yourself</div>
+          <% } %>
+        </div>
 
-                <!-- bio and social container -->
-                <div class="flex flex-col w-full md:w-[48%] lg:w-[35%] justify-center items-center lg:gap-5 md:gap-5 sm:gap-2 gap-1  lg:ml-0 md:ml-5">
-                    <!-- bio -->
-                    <div
-                        class="flex h-[107px] w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1  py-3 ">
-                        <div class="text-lg font-medium">Bio</div>
-                        <% if(user.bio && user.bio.length> 0) { %>
-                            <div>
-                                <%= user.bio %>
-                            </div>
-                            <% } else { %>
-                                <div class="text-slate-600 text-sm">Tell about yourself</div>
-                                <% } %>
-                    </div>
-
-                    <!-- social links -->
-                    <div
-                        class="flex h-[107px] w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1  py-3 ">
-                        <div class="text-lg font-medium">Social links</div>
-                        <% if(user.bio && user.bio.length> 0) { %>
-                            <div>
-                                <%= user.bio %>
-                            </div>
-                            <% } else { %>
-                                <div class="text-slate-600 text-sm">
-                                    No social links, edit profile to add them
-                                </div>
-                                <% } %>
-                    </div>
-                </div>
-
-                <!-- personal details -->
-                <div
-                    class="lg:flex md:hidden lg:-ml-0 md:-ml-[39%]  h-[235px] md:w-[45%] lg:w-[35%] flex w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1  py-3 ">
-                    <div class="text-lg font-medium">Personal Details</div>
-                    <div class="clg flex gap-2 items-center">
-                        <i class="ri-school-line"></i>
-                        <% if(user.clgname && user.clgname.length> 0) { %>
-                            <div>
-                                <%= user.clgname %>
-                            </div>
-                            <% } else { %>
-                                <div class="text-slate-600 text-sm">No college mentioned</div>
-                                <% } %>
-                    </div>
-                    <div class="clg flex gap-2 items-center">
-                        <i class="ri-graduation-cap-line text-lg"></i>
-                        <% if(user.clgname && user.clgname.length> 0) { %>
-                            <div>
-                                <%= user.branch %>
-                            </div>
-                            <% } else { %>
-                                <div class="text-slate-600 text-sm">No branch specified</div>
-                                <% } %>
-                    </div>
-                    <div class="clg flex gap-2 items-center">
-                        <i class="ri-mail-open-line"></i>
-
-                        <div class="text-slate-600 text-sm">
-                            <%= user.email %>
-                        </div>
-                    </div>
-                </div>
+        <!-- social links -->
+        <div
+          class="flex h-[107px] w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1 py-3"
+        >
+          <div class="text-lg font-medium">Social links</div>
+          <div class="w-[20%] flex justify-around">
+          <% if(user.github && user.github.length> 0) { %>
+          <a href="<%= user.github %>" target="_blank">
+            <i class="ri-github-fill"></i>
+          </a>
+          <% } else { %>
+          <div class="text-slate-600 text-sm">
+            <span class="hidden"><i class="ri-github-fill"></i></span>
+          </div>
+          <% } %>
+          <% if(user.linkedin && user.linkedin.length> 0) { %>
+            <a href="<%= user.linkedin %>" target="_blank">
+                <i class="ri-linkedin-box-fill"></i>
+            </a>
+            <% } else { %>
+            <div class="text-slate-600 text-sm">
+              <span class="hidden"><i class="ri-linkedin-box-fill"></i></span>
             </div>
-
-            <!-- skill container -->
-            <div class="w-full flex md:flex-wrap lg:flex-nowrap items-center lg:gap-5 md:gap-5 justify-center">
-                <!-- personal details -->
-                <div
-                    class="lg:hidden md:flex hidden h-[235px] md:w-[48%] lg:w-[35%] flex w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1  py-3 ">
-                    <div class="text-lg font-medium">Personal Details</div>
-                    <div class="clg flex gap-2 items-center">
-                        <i class="ri-school-line"></i>
-                        <% if(user.clgname && user.clgname.length> 0) { %>
-                            <div>
-                                <%= user.clgname %>
-                            </div>
-                            <% } else { %>
-                                <div class="text-slate-600 text-sm">No college mentioned</div>
-                                <% } %>
-                    </div>
-                    <div class="clg flex gap-2 items-center">
-                        <i class="ri-graduation-cap-line text-lg"></i>
-                        <% if(user.clgname && user.clgname.length> 0) { %>
-                            <div>
-                                <%= user.branch %>
-                            </div>
-                            <% } else { %>
-                                <div class="text-slate-600 text-sm">No branch specified</div>
-                                <% } %>
-                    </div>
-                    <div class="clg flex gap-2 items-center">
-                        <i class="ri-mail-open-line"></i>
-
-                        <div class="text-slate-600 text-sm">
-                            <%= user.email %>
-                        </div>
-                    </div>
+            <% } %>
+            <% if(user.instagram && user.instagram.length> 0) { %>
+                <a href="<%= user.instagram %>" target="_blank">
+                    <i class="ri-instagram-line"></i>
+                </a>
+                <% } else { %>
+                <div class="text-slate-600 text-sm">
+                  <span class="hidden"><i class="ri-instagram-line"></i></span>
                 </div>
-                <!-- skills -->
-                <div class="flex skillScroll xl:h-[107px] lg:h-[107px] md:h-[235px] md:w-[48%] lg:w-full w-full  bg-blue-100 flex-col items-center justify-center rounded-xl gap-1  py-3 lg:mt-0 md:mt-0 sm:mt-2 mt-1">
-                    <div class="text-lg font-medium">Skills</div>
-                    <% if(user.bio && user.bio.length> 0) { %>
-                        <div>
-                            <%= user.bio %>
-                        </div>
-                        <% } else { %>
-                            <div class="text-slate-600 text-sm">
-                                No skills added
-                            </div>
-                            <% } %>
-                </div>
-            </div>
-            
+                <% } %>
         </div>
-
-        <div class="h-[2px] rounded-xl bg-yellow-400 mt-32"></div>
-
-        <div class="flex justify-center items-center mt-3 text-lg font-semibold">
-            <h1 class="">Your Posts <div class="h-[3px] rounded-lg w-full bg-yellow-400"></div></h1>
         </div>
+      </div>
 
-        <!-- user posts -->
-        
+      <!-- personal details -->
+      <div
+        class="lg:flex md:hidden lg:-ml-0 md:-ml-[39%] h-[235px] md:w-[45%] lg:w-[35%] flex w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1 py-3"
+      >
+        <div class="text-lg font-medium">Personal Details</div>
+        <div class="clg flex gap-2 items-center">
+          <i class="ri-school-line"></i>
+          <% if(user.clgname && user.clgname.length> 0) { %>
+          <div><%= user.clgname %></div>
+          <% } else { %>
+          <div class="text-slate-600 text-sm">No college mentioned</div>
+          <% } %>
+        </div>
+        <div class="clg flex gap-2 items-center">
+          <i class="ri-graduation-cap-line text-lg"></i>
+          <% if(user.clgname && user.clgname.length> 0) { %>
+          <div><%= user.branch %></div>
+          <% } else { %>
+          <div class="text-slate-600 text-sm">No branch specified</div>
+          <% } %>
+        </div>
+        <div class="clg flex gap-2 items-center">
+          <i class="ri-mail-open-line"></i>
 
-
+          <div class="text-slate-600 text-sm"><%= user.email %></div>
+        </div>
+      </div>
     </div>
-    <script>
-        const menuIcon = document.getElementById('menu-icon');
-        const dropdownMenu = document.getElementById('dropdown-menu');
 
-        menuIcon.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent the default behavior of the <i> element
-            dropdownMenu.classList.toggle('hidden');
-        });
+    <!-- skill container -->
+    <div
+      class="w-full flex md:flex-wrap lg:flex-nowrap items-center lg:gap-5 md:gap-5 justify-center"
+    >
+      <!-- personal details -->
+      <div
+        class="lg:hidden md:flex hidden h-[235px] md:w-[48%] lg:w-[35%] flex w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1 py-3"
+      >
+        <div class="text-lg font-medium">Personal Details</div>
+        <div class="clg flex gap-2 items-center">
+          <i class="ri-school-line"></i>
+          <% if(user.clgname && user.clgname.length> 0) { %>
+          <div><%= user.clgname %></div>
+          <% } else { %>
+          <div class="text-slate-600 text-sm">No college mentioned</div>
+          <% } %>
+        </div>
+        <div class="clg flex gap-2 items-center">
+          <i class="ri-graduation-cap-line text-lg"></i>
+          <% if(user.clgname && user.clgname.length> 0) { %>
+          <div><%= user.branch %></div>
+          <% } else { %>
+          <div class="text-slate-600 text-sm">No branch specified</div>
+          <% } %>
+        </div>
+        <div class="clg flex gap-2 items-center">
+          <i class="ri-mail-open-line"></i>
 
-    </script>
-    <%- include('./partials/footer') %>
+          <div class="text-slate-600 text-sm"><%= user.email %></div>
+        </div>
+      </div>
+      <!-- skills -->
+      <div
+        class="flex skillScroll xl:h-[107px] lg:h-[107px] md:h-[235px] md:w-[48%] lg:w-full w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1 py-3 lg:mt-0 md:mt-0 sm:mt-2 mt-1"
+      >
+        <div class="text-lg font-medium">Skills</div>
+        <% if(user.skills && user.skills.length> 0) { %>
+        <div><%= user.skills %></div>
+        <% } else { %>
+        <div class="text-slate-600 text-sm">No skills added</div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-[2px] rounded-xl bg-yellow-400 mt-32"></div>
+
+  <div class="flex justify-center items-center mt-3 text-lg font-semibold">
+    <h1 class="">
+      Your Posts
+      <div class="h-[3px] rounded-lg w-full bg-yellow-400"></div>
+    </h1>
+  </div>
+
+  <div
+    id="feed-container"
+    class="w-full relative top-3 flex flex-col justify-center items-center mx-auto mt-2"
+  >
+    <!-- user posts -->
+    <% user.posts.forEach(function(post){ %>
+    <div
+      class="card w-[100%] text-sm md:text-base rounded-xl bg-blue-100 flex flex-col px-3 py-2 my-2 md:w-[90%]"
+    >
+      <div class="dets flex gap-2 relative items-center">
+        <img
+          src="../images/<%= user.profileimg %>"
+          alt=""
+          class="h-[40px] rounded-full"
+        />
+        <div class="font-semibold"><%= user.username %></div>
+      </div>
+      <div class="hero flex flex-col items-center justify-center mx-auto mt-2">
+        <div class="content text-center break-words" id="content">
+          <!-- Initial content with limited characters -->
+          <%= post.Truncatedcontent %>
+          <!-- Full content (hidden by default) -->
+          <span class="hidden" id="full-content"> <%= post.content %> </span>
+        </div>
+        <button id="read-more-btn" class="flex text-blue-500 hover:underline">
+          Read More
+        </button>
+        <button id="read-less-btn" class="hidden text-blue-500 hover:underline">
+          Read Less
+        </button>
+        <div class="btns flex h-[20px] justify-center items-center gap-5 my-2">
+          <!-- icons -->
+          <div class="cursor-pointer">
+            <i class="ri-thumb-up-line"></i>
+            <span class="text-zinc-600"> <%= post.likes.length %> </span>
+          </div>
+          <div class="cursor-pointer">
+            <i class="ri-chat-3-line"></i>
+            <span class="text-zinc-600"> <%= post.comments.length %> </span>
+          </div>
+          <div class="cursor-pointer">
+            <i class="ri-share-line"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% }) %>
+  </div>
+</div>
+<script>
+  //readmore and readless
+  document.addEventListener("DOMContentLoaded", function () {
+    const readMoreBtns = document.querySelectorAll("#read-more-btn");
+    const readLessBtns = document.querySelectorAll("#read-less-btn");
+    const contents = document.querySelectorAll("#content");
+    const fullContents = document.querySelectorAll("#full-content");
+
+    readMoreBtns.forEach((readMoreBtn, index) => {
+      readMoreBtn.addEventListener("click", function () {
+        console.log("readmore");
+        contents[index].innerHTML = fullContents[index].innerHTML;
+        readMoreBtn.classList.add("hidden");
+        readLessBtns[index].classList.remove("hidden");
+      });
+    });
+
+    readLessBtns.forEach((readLessBtn, index) => {
+      readLessBtn.addEventListener("click", function () {
+        console.log("readless");
+        contents[index].innerHTML =
+          fullContents[index].innerHTML.slice(0, 150) + "...";
+        readMoreBtns[index].classList.remove("hidden");
+        readLessBtn.classList.add("hidden");
+      });
+    });
+  });
+
+  const menuIcon = document.getElementById("menu-icon");
+  const dropdownMenu = document.getElementById("dropdown-menu");
+
+  menuIcon.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default behavior of the <i> element
+    dropdownMenu.classList.toggle("hidden");
+  });
+</script>
+<%- include('./partials/footer') %>

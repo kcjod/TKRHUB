@@ -16,6 +16,28 @@
   display: none;
 }
 
+/* Hide scrollbar track and buttons */
+.box::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Optional: Style the thumb */
+.box::-webkit-scrollbar-thumb {
+  background: #888; /* Change this to your desired color */
+}
+
+/* Optional: Style the track */
+.box::-webkit-scrollbar-track {
+  background: transparent; /* Change this to your desired color */
+}
+
+/* Optional: Style the buttons (arrows) */
+.box::-webkit-scrollbar-button {
+  display: none;
+}
+
+
 @media (max-width: 642px) {
   .row1{
     display: flex;
