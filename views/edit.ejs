@@ -1,7 +1,7 @@
 <%- include('./partials/header') %>
 <div class="w-screen h-screen bg-yellow-200 absolute top-0">
   <div
-    class="w-[90vw] box bg-zinc-100 relative overflow-y-scroll left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] rounded-2xl md:w-[45vw] h-[65vh] lg:w-[30vw] h-[65vh]"
+    class="w-[90vw] mt-5 box bg-zinc-100 relative overflow-y-scroll left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] rounded-2xl md:w-[45vw] h-auto lg:w-[30vw] h-[65vh]"
   >
     <form
       class="w-full flex justify-center items-center flex-col gap-5 my-2"
@@ -14,14 +14,14 @@
       <h1 class="font-semibold text-3xl">Edit profile</h1>
       <% if(user.email && user.email.length>0){ %>
       <input
-        class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+        class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
         type="email"
         name="email"
         placeholder="<%= user.email %>"
       />
       <% }else{ %>
         <input
-        class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+        class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
         type="email"
         name="email"
         placeholder="email"
@@ -29,14 +29,14 @@
       <% } %>
       <% if(user.bio && user.bio.length>0){ %>
         <input
-          class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+          class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
           type="text"
           name="bio"
           placeholder="<%= user.bio %>"
         />
         <% }else{ %>
           <input
-          class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+          class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
           type="text"
           name="bio"
           placeholder="bio"
@@ -44,14 +44,14 @@
         <% } %>
         <% if(user.clgname && user.clgname.length>0){ %>
           <input
-            class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+            class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
             type="text"
             name="clgname"
             placeholder="<%= user.clgname %>"
           />
           <% }else{ %>
             <input
-            class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+            class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
             type="text"
             name="clgname"
             placeholder="College/University"
@@ -59,14 +59,14 @@
           <% } %> 
           <% if(user.branch && user.branch.length>0){ %>
             <input
-              class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+              class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
               type="text"
               name="branch"
               placeholder="<%= user.branch %>"
             />
             <% }else{ %>
               <input
-              class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+              class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
               type="text"
               name="branch"
               placeholder="Branch"
@@ -77,14 +77,14 @@
       
       <% if(user.github && user.github.length>0){ %>
         <input
-          class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+          class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
           type="text"
           name="github"
           placeholder="<%= user.github %>"
         />
         <% }else{ %>
           <input
-          class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+          class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
           type="text"
           name="github"
           placeholder="Github"
@@ -92,14 +92,14 @@
         <% } %>
         <% if(user.linkedin && user.linkedin.length>0){ %>
           <input
-            class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+            class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
             type="text"
             name="linkedin"
             placeholder="<%= user.linkedin %>"
           />
           <% }else{ %>
             <input
-            class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+            class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
             type="text"
             name="linkedin"
             placeholder="LinkedIn"
@@ -107,14 +107,14 @@
           <% } %>
           <% if(user.instagram && user.instagram.length>0){ %>
             <input
-              class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+              class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
               type="text"
               name="instagram"
               placeholder="<%= user.instagram %>"
             />
             <% }else{ %>
               <input
-              class="w-[70%] py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+              class="w-[80%] p-2 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
               type="text"
               name="instagram"
               placeholder="Instagram"
