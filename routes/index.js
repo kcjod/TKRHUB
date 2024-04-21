@@ -94,21 +94,17 @@ router.post("/post", isLoggedIn, async function(req, res, next) {
       username: req.session.passport.user
     });
 
-    console.log("User:", user); // Log user object
-
-    const limitedContent = req.body.content;
+    const limitedContent = req.body.content.trim();
     const post = new postModel({
-      Truncatedcontent: limitedContent.slice(1, 150),
-      content:  req.body.content,
+      Truncatedcontent: limitedContent.slice(0, 150),
+      content:  req.body.content.slice().trim(),
       author: user._id
     });
 
-    console.log("Post:", post); // Log post object
     await post.save();
 
     user.posts.push(post._id);
     await user.save();
-    console.log("User after saving:", user); // Log user object after saving
 
     res.redirect("/feed");
   } catch (error) {
