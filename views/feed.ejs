@@ -37,14 +37,14 @@
     <% posts.forEach(function(post){ %>
       <div class="card border-b-4 border-slate-700 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col px-3 py-2 my-2 md:w-[100%]">
         <div class="dets flex gap-2 relative items-center">
-          <img src="../images/<%= post.author.profileimg %>" alt="" class="h-[40px] rounded-full" />
-          <div class="font-semibold">
+          <a href="/publicprofile/<%= post.author.username %>"><img src="../images/<%= post.author.profileimg %>" alt="" class="h-[40px] rounded-full" /></a>
+          <a href="/publicprofile/<%= post.author.username %>"><div class="font-semibold">
             <%= post.author.username %>
-          </div>
+          </div></a>
           <div class="font-zinc-400">
             <%= post.author.followers.length %> followers
           </div>
-          <a href="/follow/:username"><button
+          <a href="/follow/<%= post.author.username %>"><button
               class="bg-yellow-400 opacity-85 px-3 py-2 rounded-2xl text-white hover:opacity-100">
               Follow
             </button></a>
