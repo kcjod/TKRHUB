@@ -49,6 +49,22 @@ router.get("/feed", isLoggedIn, async function(req, res, next) {
 });
 
 
+router.get("/publicprofile/:username", async function(req,res){
+  const user = await userModel.findOne({username: req.params.username}).populate("posts");
+  let loggedin,nav;
+  if(req.isAuthenticated()){
+    loggedin = true;
+    nav = true;
+  }
+  else{
+    loggedin = false;
+    nav = false;
+  }
+  // console.log(user);
+  res.render("publicprof", {user: user, loggedin: loggedin,nav: nav});
+});
+
+
 // router.get("/posts",async function(req,res){
 //   const posts = await postModel.find();
 //   res.send(posts);
