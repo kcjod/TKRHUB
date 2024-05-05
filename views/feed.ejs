@@ -44,10 +44,18 @@
           <div class="font-zinc-400">
             <%= post.author.followers.length %> followers
           </div>
+          <% if(!following){ %>
           <a href="/follow/<%= post.author.username %>"><button
               class="bg-yellow-400 opacity-85 px-3 py-2 rounded-2xl text-white hover:opacity-100">
               Follow
             </button></a>
+          <% }else{ %>
+          
+            <a href="/follow/<%= post.author.username %>"><button
+                class="bg-blue-100 opacity-85 px-3 py-2 rounded-2xl text-black hover:bg-yellow-300">
+                Following
+              </button></a>
+            <% } %>
         </div>
         <div class="hero flex flex-col items-start justify-center mt-2">
           <div class="content text-start break-normal" id="content">
@@ -81,12 +89,10 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <% }) %>
   </div>
-
   <script>
 
     // read more and less functionality

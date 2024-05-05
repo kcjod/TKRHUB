@@ -39,29 +39,76 @@ router.get("/feed", isLoggedIn, async function(req, res, next) {
     const posts = (await postModel.find().populate("author")).slice().reverse();
     const user = await userModel.findOne({username: req.session.passport.user});
 
-    console.log(posts); // Log the retrieved posts
+    // Loop through each post and check if the user is following the author
+    posts.forEach(post => {
+      if (user.following.includes(post.author._id)) {
+        isfollowing = true;
+      } else {
+        isfollowing = false;
+      }
+    });
 
     // Render the 'feed' template with the retrieved posts
-    res.render("feed", { posts: posts, user:user, nav: true });
+    res.render("feed", { posts: posts, user: user, nav: true, following: isfollowing });
   } catch (error) {
     next(error);
   }
 });
 
 
+
+
 router.get("/publicprofile/:username", async function(req,res){
   const user = await userModel.findOne({username: req.params.username}).populate("posts");
+
   let loggedin,nav;
   if(req.isAuthenticated()){
+    let currentUser = await userModel.findOne({username: req.session.passport.user});
     loggedin = true;
     nav = true;
+    if (currentUser.following.includes(user._id)) {
+      isfollowing = true;
+    } else {
+      isfollowing = false;
+    }
+    return res.render("publicprof", {user: user, loggedin: loggedin,nav: nav, following: isfollowing});
   }
   else{
     loggedin = false;
     nav = false;
   }
-  // console.log(user);
-  res.render("publicprof", {user: user, loggedin: loggedin,nav: nav});
+
+  res.render("publicprof", {user: user, loggedin: loggedin,nav: nav, isfollowing: "hidden"});
+  
+});
+
+router.get("/follow/:username", isLoggedIn, async function (req, res) {
+  let currentUser = await userModel.findOne({
+    username: req.session.passport.user,
+  });
+  let thatUser = await userModel.findOne({username: req.params.username});
+
+  if(currentUser.username === thatUser.username){
+    return res.redirect("back");
+  }
+
+  let tobeFollowed = await userModel.findOne({ _id: thatUser._id });
+
+  if (currentUser.following.indexOf(tobeFollowed._id) !== -1) {
+    let index = currentUser.following.indexOf(tobeFollowed._id);
+    currentUser.following.splice(index, 1);
+
+    let index2 = tobeFollowed.followers.indexOf(currentUser._id);
+    tobeFollowed.followers.splice(index2, 1);
+  } else {
+    tobeFollowed.followers.push(currentUser._id);
+    currentUser.following.push(tobeFollowed._id);
+  }
+
+  await tobeFollowed.save();
+  await currentUser.save();
+
+  res.redirect("back");
 });
 
 
@@ -130,9 +177,6 @@ router.post("/post", isLoggedIn, async function(req, res, next) {
 });
 
 
-router.post("/follow/:username", function(){
-  
-})
 
 router.post("/register", function (req, res) {
   userModel.findOne({ username: req.body.username })
