@@ -2,7 +2,7 @@
 
   <div class="w-[80%] relative top-16 flex flex-col justify-center items-center mx-auto">
     <div>
-      <h1 class=" text-center md:text-2xl lg:text-2xl xl:text-3xl text-[20px]">
+      <h1 class="text-white text-center md:text-2xl lg:text-2xl xl:text-3xl text-[20px]">
         Have you ever gone through an interview?
       </h1>
     </div>
@@ -35,13 +35,13 @@
   <div id="feed-container"
     class="w-[90%] relative top-16 flex flex-col gap-5 justify-center items-center mx-auto mt-2 lg:w-[80%]">
     <% posts.forEach(function(post){ %>
-      <div class="card border-b-4 border-slate-700 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col px-3 py-2 my-2 md:w-[100%]">
-        <div class="dets flex gap-2 relative items-center">
-          <a href="/publicprofile/<%= post.author.username %>"><img src="../images/<%= post.author.profileimg %>" alt="" class="h-[40px] rounded-full" /></a>
+      <div class="card border-b-4 border-lime-500 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]">
+        <div class="dets flex gap-3 relative items-center mb-3">
+          <a href="/publicprofile/<%= post.author.username %>"><img src="../images/<%= post.author.profileimg %>" alt="" class="h-[40px] border rounded-full" /></a>
           <a href="/publicprofile/<%= post.author.username %>"><div class="font-semibold">
             <%= post.author.username %>
           </div></a>
-          <div class="font-zinc-400">
+          <div class="text-lime-500 ml-2">
             <%= post.author.followers.length %> followers
           </div>
         </div>
@@ -52,10 +52,10 @@
             <!-- Full content (hidden by default) -->
             <pre id="full-content" class="hidden whitespace-pre-wrap"><%= post.content %></pre>
           </div>
-          <span id="read-more-btn" class="cursor-pointer  mx-auto text-blue-500 hover:underline">
+          <span id="read-more-btn" class="cursor-pointer  mx-auto text-lime-500 hover:underline">
             Read More
           </span>
-          <span id="read-less-btn" class="cursor-pointer mx-auto hidden text-blue-500 hover:underline">
+          <span id="read-less-btn" class="cursor-pointer mx-auto hidden text-lime-500 hover:underline">
             Read Less
           </span>
           <div class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2">
