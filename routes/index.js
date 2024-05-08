@@ -112,10 +112,13 @@ router.get("/follow/:username", isLoggedIn, async function (req, res) {
 });
 
 
-// router.get("/posts",async function(req,res){
-//   const posts = await postModel.find();
-//   res.send(posts);
-// })
+router.get("/username/:username",async function(req,res){
+
+  const regex = new RegExp(`^${req.params.username}`, "i");
+  const users = await userModel.find({username: regex});
+
+  res.json(users);
+})
 
 
 // POST routes
