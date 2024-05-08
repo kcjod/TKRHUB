@@ -98,7 +98,7 @@
                     </div>
                 <% } %>
             <% } else { %>
-                <p class="text-sm">No social links added</p>            
+                <p class="text-sm text-slate-600">No social links added</p>            
             <% } %>
         </div>
         </div>
@@ -193,46 +193,49 @@
   >
     <!-- user posts -->
     <% user.posts.forEach(function(post){ %>
-    <div
-      class="card w-[100%] text-sm md:text-base rounded-xl bg-blue-100 flex flex-col px-3 py-2 my-2 md:w-[90%]"
-    >
-      <div class="dets flex gap-2 relative items-center">
-        <img
-          src="../images/<%= user.profileimg %>"
-          alt=""
-          class="h-[40px] rounded-full"
-        />
-        <div class="font-semibold"><%= user.username %></div>
-      </div>
-      <div class="hero flex flex-col items-center justify-center mx-auto mt-2">
-        <div class="content text-center break-words" id="content">
-          <!-- Initial content with limited characters -->
-          <%= post.Truncatedcontent %>
-          <!-- Full content (hidden by default) -->
-          <span class="hidden" id="full-content"> <%= post.content %> </span>
-        </div>
-        <button id="read-more-btn" class="flex text-blue-500 hover:underline">
-          Read More
-        </button>
-        <button id="read-less-btn" class="hidden text-blue-500 hover:underline">
-          Read Less
-        </button>
-        <div class="btns flex h-[20px] justify-center items-center gap-5 my-2">
-          <!-- icons -->
-          <div class="cursor-pointer">
-            <i class="ri-thumb-up-line"></i>
-            <span class="text-zinc-600"> <%= post.likes.length %> </span>
-          </div>
-          <div class="cursor-pointer">
-            <i class="ri-chat-3-line"></i>
-            <span class="text-zinc-600"> <%= post.comments.length %> </span>
-          </div>
-          <div class="cursor-pointer">
-            <i class="ri-share-line"></i>
+      <div class="card border-b-4 border-slate-700 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col px-3 py-2 my-2 md:w-[100%]">
+        <div class="dets flex gap-2 relative items-center">
+          <a href="/publicprofile/<%= user.username %>"><img src="../images/<%= user.profileimg %>" alt="" class="h-[40px] rounded-full" /></a>
+          <a href="/publicprofile/<%= user.username %>"><div class="font-semibold">
+            <%= user.username %>
+          </div></a>
+          <div class="font-zinc-400">
+            <%= user.followers.length %> followers
           </div>
         </div>
+        <div class="hero flex flex-col items-start justify-center mt-2 overflow-hidden">
+          <div class="content text-start break-words" id="content">
+            <!-- Initial content with limited characters -->
+            <pre id="content" class="whitespace-pre-wrap"><%= post.Truncatedcontent %></pre>
+            <!-- Full content (hidden by default) -->
+            <pre id="full-content" class="hidden whitespace-pre-wrap"><%= post.content %></pre>
+          </div>
+          <span id="read-more-btn" class="cursor-pointer  mx-auto text-blue-500 hover:underline">
+            Read More
+          </span>
+          <span id="read-less-btn" class="cursor-pointer mx-auto hidden text-blue-500 hover:underline">
+            Read Less
+          </span>
+          <div class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2">
+            <!-- icons -->
+            <div class="cursor-pointer">
+              <i class="ri-thumb-up-line"></i>
+              <span class="text-zinc-600">
+                <%= post.likes.length %>
+              </span>
+            </div>
+            <div class="cursor-pointer">
+              <i class="ri-chat-3-line"></i>
+              <span class="text-zinc-600">
+                <%= post.comments.length %>
+              </span>
+            </div>
+            <div class="cursor-pointer">
+              <i class="ri-share-line"></i>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
     <% }) %>
   </div>
