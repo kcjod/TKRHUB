@@ -274,5 +274,42 @@
     event.preventDefault(); // Prevent the default behavior of the <i> element
     dropdownMenu.classList.toggle("hidden");
   });
+
+  const input = document.querySelector("#Searchinp");
+    let clutter = "";
+    input.addEventListener("keyup", function () {
+        console.log(input.value, '.')
+        if(input.value !== ""){
+            axios.get(`/username/${input.value}`)
+            .then((data) => {
+                if (data.data.length > 0) {
+                    clutter = "";
+                    data.data.forEach(function (e) {
+                        clutter += `
+                    <div class="">
+                        <div class="w-full flex bg-blue-50 overflow-hidden gap-5 items-center px-5 py-2 rounded-xl" id="elem">
+                            <a href="/publicprofile/${e.username}"><div class="overflow-hidden">
+                                <img class="w-[30px] object-cover rounded-full cursor-pointer"  src="../images/${e.profileimg}" alt="">    
+                            </div></a>
+                            <a href="/publicprofile/${e.username}"><div class="cursor-pointer text-semibold">
+                                <span>${e.username}</span>
+                            </div></a>
+                        </div>
+                    </div>
+                    `
+                    })
+                }
+                else{
+                    document.querySelector(".searchvals").innerHTML = ""
+                }
+                document.querySelector(".searchvals").innerHTML = clutter;
+            })
+        }
+        else{
+            document.querySelector(".searchvals").innerHTML = ""
+        }
+    });
+
 </script>
+
 <%- include('./partials/footer') %>
