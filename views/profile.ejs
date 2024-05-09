@@ -152,7 +152,7 @@
         </div>
         <div class="clg flex gap-2 items-center">
           <i class="ri-graduation-cap-line text-lg"></i>
-          <% if(user.clgname && user.clgname.length> 0) { %>
+          <% if(user.branch && user.branch.length> 0) { %>
           <div><%= user.branch %></div>
           <% } else { %>
           <div class="text-slate-600 text-sm">No branch specified</div>
@@ -160,7 +160,6 @@
         </div>
         <div class="clg flex gap-2 items-center">
           <i class="ri-mail-open-line"></i>
-
           <div class="text-slate-600 text-sm"><%= user.email %></div>
         </div>
       </div>
