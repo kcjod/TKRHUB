@@ -15,29 +15,34 @@
     href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="../stylesheets/style.css">
+  <script src="https://kit.fontawesome.com/5738f81d64.js" crossorigin="anonymous"></script>
 
   <title>TKR Interview Bits</title>
 </head>
 
-<body class="w-full bg-slate-800">
+<body class="w-full bg-slate-800 overflow-y-scroll overflow-x-hidden">
 
   <% if(nav){ %>
     <nav class="bg-lime-500 w-full h-[60px]  z-50 fixed top-0">
       <div class="w-[95%] my-0 mx-auto h-full flex justify-between items-center w-[80%] md:w-[80%]">
-        <a href="/"><div class="flex w-[95%] font-semibold text-md lg:text-xl lg:w-[30vw] items-center gap-1" id="logo">
-          <img class="h-[45px]" src="/images/1000117438-removebg-preview.png" alt="">
-          TKR Interview Bits
-        </div></a>
+        <a href="/">
+          <div class="flex font-semibold text-md lg:text-xl lg:w-[30vw] items-center gap-1" id="logo">
+            <img class="h-[45px]" src="/images/1000117438-removebg-preview.png" alt="">
+            <strong class="xl:text-2xl lg:text-2xl md:text-xl text-lg">TKR Interview Bits</strong>
+          </div>
+        </a>
 
-        
+
         <div class="elems lg:w-[70vw]  flex justify-around items-center">
           <div class="flex gap-2 items-center justify-center md:w-[30vw] sm:w-8 mr-5 sc">
             <i class="ri-search-line font-bold text-2xl cursor-pointer"></i>
-            <input id="Searchinp" class="py-1 px-3 rounded-md lg:w-[30vw] md:w-[30vw] " placeholder="search..." type="text" name="searchProfiles" id="">
+            <input id="Searchinp" class="py-1 px-3 rounded-md lg:w-[30vw] md:w-[30vw] " placeholder="search..."
+              type="text" name="searchProfiles" id="">
             <div class="searchvals lg:w-[30%] absolute top-[8.5vh] bg-slate-100"></div>
           </div>
           <a href="/feed">
-            <div class="hidden px-5 py-3 hover:bg-white hover:text-black rounded-md duration-200 lg:block" id="elems">Feed</div>
+            <div class="hidden px-5 py-3 hover:bg-white hover:text-black rounded-md duration-200 lg:block" id="elems">
+              Feed</div>
           </a>
           <a href="/logout">
             <div class="hidden px-2 py-3 hover:bg-white hover:text-black rounded-md duration-200 lg:block" id="elems">
@@ -45,27 +50,42 @@
             </div>
           </a>
           <a href="/profile">
-            <img src="/images/def.jpg" alt="" class="hidden h-[40px] rounded-full border-2 border-zinc-200 lg:block" />
+            <img src="/images/def.jpg" alt="" class="hidden  h-[40px] w-[40px] ml-3 rounded-full border-2 border-zinc-200 lg:block" />
           </a>
-            <div class="relative block lg:hidden">
-              <i class="block ri-menu-3-line block cursor-pointer lg:hidden" id="menu-icon"></i>
-              <ul class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden" id="dropdown-menu">
-                <a href="/">
-                  <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Home</li>
-                </a>
-                <a href="/feed">
-                  <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Feed</li>
-                </a>
-                <a href="/profile">
-                  <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Profile</li>
-                </a>
-                <a href="/logout">
-                  <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Logout</li>
-                </a>
-              </ul>
-            </div>
+          <div class="relative block lg:hidden">
+            <i class="block ri-menu-3-line block cursor-pointer lg:hidden" id="menu-icon"></i>
+            <ul class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden" id="dropdown-menu">
+              <a href="/">
+                <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Home</li>
+              </a>
+              <a href="/feed">
+                <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Feed</li>
+              </a>
+              <a href="/profile">
+                <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Profile</li>
+              </a>
+              <a href="/logout">
+                <li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Logout</li>
+              </a>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
+
+    <!-- delete confirmation popup -->
+    <section id="deleteContainer"
+      class=" bg-[rgba(0,0,0,0.6)] h-[100vh] w-[100vw] fixed z-[10] top-0 left-0 bottom-0 right-0 hidden justify-center items-center">
+      <div class="xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[50vw] w-[70vw] bg-white p-5 rounded-xl flex flex-col gap-5">
+        <strong class="font-bold text-md">Delete this post?</strong>
+        <div class="btns flex justify-around">
+          <button id="closeBtn"
+            class="bg-slate-200 hover:bg-slate-300 duration-200 rounded-md shadow-xl px-3 py-2">Cancel</button>
+          <button onclick="deletePost()" id="deleteBtn"
+            class="shadow-xl bg-slate-800 duration-200 hover:bg-slate-700 rounded-md text-white px-3 py-2">Delete</button>
+        </div>
+      </div>
+    </section>
+
 
     <% } %>
