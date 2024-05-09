@@ -18,13 +18,13 @@
     let clutter = "";
     input.addEventListener("keyup", function () {
         console.log(input.value, '.')
-        if(input.value !== ""){
+        if (input.value !== "") {
             axios.get(`/username/${input.value}`)
-            .then((data) => {
-                if (data.data.length > 0) {
-                    clutter = "";
-                    data.data.forEach(function (e) {
-                        clutter += `
+                .then((data) => {
+                    if (data.data.length > 0) {
+                        clutter = "";
+                        data.data.forEach(function (e) {
+                            clutter += `
                     <div class="">
                         <div class="w-full flex bg-blue-50 overflow-hidden gap-5 items-center px-5 py-2 rounded-xl" id="elem">
                             <a href="/publicprofile/${e.username}"><div class="overflow-hidden">
@@ -36,18 +36,52 @@
                         </div>
                     </div>
                     `
-                    })
-                }
-                else{
-                    document.querySelector(".searchvals").innerHTML = ""
-                }
-                document.querySelector(".searchvals").innerHTML = clutter;
-            })
+                        })
+                    }
+                    else {
+                        document.querySelector(".searchvals").innerHTML = ""
+                    }
+                    document.querySelector(".searchvals").innerHTML = clutter;
+                })
         }
-        else{
+        else {
             document.querySelector(".searchvals").innerHTML = ""
         }
     });
+
+
+    // delete dropdown
+    const deleteBtns = document.querySelectorAll('.delete');
+    const deleteContainer = document.querySelector('#deleteContainer');
+    const cancelButton = document.querySelector('#deleteContainer .btns button:first-child');
+
+    deleteBtns.forEach((deleteBtn) => {
+        deleteBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            deleteContainer.classList.remove('hidden');
+            deleteContainer.classList.add('flex');
+        });
+    })
+
+    document.addEventListener('click', (event) => {
+        const clickedElement = event.target;
+        const isDeleteContainer = clickedElement === deleteContainer;
+        const isCancelButton = clickedElement === cancelButton;
+
+        if (!isDeleteContainer || !isCancelButton) {
+            deleteContainer.classList.remove('flex');
+            deleteContainer.classList.add('hidden');
+        }
+    });
+
+    cancelButton.addEventListener('click', () => {
+        deleteContainer.classList.add('hidden');
+    });
+
+    function deletePost(id) {
+        alert(id);
+        console.log('first')
+    }
 
 
 </script>
