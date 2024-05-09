@@ -38,12 +38,19 @@
       <div class="card border-b-4 border-lime-500 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]">
         <div class="dets flex gap-3 relative items-center mb-3">
           <a href="/publicprofile/<%= post.author.username %>"><img src="../images/<%= post.author.profileimg %>" alt="" class="h-[40px] border rounded-full" /></a>
-          <a href="/publicprofile/<%= post.author.username %>"><div class="font-semibold">
-            <%= post.author.username %>
-          </div></a>
+          <a href="/publicprofile/<%= post.author.username %>">
+            <div class="font-semibold">
+              <%= post.author.username %>
+            </div>
+          </a>
           <div class="text-lime-500 ml-2">
             <%= post.author.followers.length %> followers
           </div>
+
+          <% if(post.author && user && post.author._id && user._id && post.author._id.toString() === user._id.toString()) { %>
+            <i class="delete fa-regular fa-trash-can fa-lg absolute cursor-pointer right-0"></i>
+          <% } %>
+        
         </div>
         <div class="hero flex flex-col items-start justify-center mt-2 overflow-hidden">
           <div class="content text-start break-words" id="content">
