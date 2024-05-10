@@ -1,4 +1,35 @@
 <%- include('./partials/header') %>
+    <main>
+        <video src="../images/bg-video.mp4" muted id="video"
+            class="w-full h-screen object-cover z-[-1] fixed top-0"></video>
+        <div id="page1" class="w-full h-screen relative top-0">
+            <div id="box" class="absolute">This is page 1</div>
+        </div>
+        <div id="page2" class="w-full h-screen relative top-0">
+            <div id="box" class="absolute">This is page 2</div>
+        </div>
+    </main>
 
-index page
+    <script>
+        var video = document.getElementById('video');
+        var scrollTimeout;
+
+        function handleScroll() {
+            // Play the video when scrolling
+            video.play();
+
+            // Clear the previous timeout to avoid multiple pause actions
+            clearTimeout(scrollTimeout);
+
+            // Set a timeout to pause the video after scrolling stops
+            scrollTimeout = setTimeout(function () {
+                video.pause();
+            }, 300); // Adjust the timeout duration as needed
+        }
+
+        // Add scroll event listener to the window
+        window.addEventListener('scroll', handleScroll);
+
+    </script>
+
 <%- include('./partials/footer') %>

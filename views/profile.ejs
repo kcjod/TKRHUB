@@ -1,5 +1,4 @@
 <%- include('./partials/header') %>
-
   <div class="w-[90vw] md:w-[80vw] mx-auto">
     <div class="w-full flex justify-between items-center relative top-[70px] px-4">
       <div class="text-2xl text-white font-bold">Profile</div>
@@ -177,133 +176,204 @@
       </div>
     </div>
 
-    <div class="h-[1px] rounded-xl bg-white mt-32"></div>
-
-    <div class="flex justify-center items-center mt-3 text-lg font-semibold">
-      <h1 class="text-white">
-        Your Posts
-        <div class="h-[3px] rounded-lg w-full bg-lime-500"></div>
-      </h1>
-    </div>
-
-    <div id="feed-container" class="w-full relative top-3 flex flex-col justify-center items-center mx-auto mt-2">
-      <!-- user posts -->
-      <% user.posts.forEach(function(post){ %>
+      <!-- skill container -->
+      <div class="w-full flex md:flex-wrap lg:flex-nowrap items-center lg:gap-5 md:gap-5 justify-center">
+        <!-- personal details -->
         <div
-          class="card border-b-4 border-lime-500 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]">
-          <div class="dets flex gap-3 relative items-center mb-3">
-            <a href="/publicprofile/<%= user.username %>"><img src="../images/<%= user.profileimg %>" alt=""
-                class="border h-[40px] rounded-full" /></a>
-            <a href="/publicprofile/<%= user.username %>">
-              <div class="font-semibold">
-                <%= user.username %>
+          class="lg:hidden md:flex hidden h-[235px] md:w-[48%] lg:w-[35%] flex w-full bg-blue-100 flex-col items-center justify-center rounded-xl gap-1 py-3">
+          <div class="text-lg font-medium">Personal Details</div>
+          <div class="clg flex gap-2 items-center">
+            <i class="ri-school-line"></i>
+            <% if(user.clgname && user.clgname.length> 0) { %>
+              <div>
+                <%= user.clgname %>
               </div>
-            </a>
-            <div class="text-lime-500">
-              <%= user.followers.length %> followers
-            </div>
-            <i class="delete fa-regular fa-trash-can fa-lg absolute cursor-pointer right-0"></i>
+              <% } else { %>
+                <div class="text-slate-600 text-sm">No college mentioned</div>
+                <% } %>
           </div>
-          <div class="hero flex flex-col items-start justify-center mt-2 overflow-hidden">
-            <div class="content text-start break-words" id="content">
-              <!-- Initial content with limited characters -->
-              <pre id="content" class="whitespace-pre-wrap"><%= post.Truncatedcontent %></pre>
-              <!-- Full content (hidden by default) -->
-              <pre id="full-content" class="hidden whitespace-pre-wrap"><%= post.content %></pre>
+          <div class="clg flex gap-2 items-center">
+            <i class="ri-graduation-cap-line text-lg"></i>
+            <% if(user.branch && user.branch.length> 0) { %>
+              <div>
+                <%= user.branch %>
+              </div>
+              <% } else { %>
+                <div class="text-slate-600 text-sm">No branch specified</div>
+                <% } %>
+          </div>
+          <div class="clg flex gap-2 items-center">
+            <i class="ri-mail-open-line"></i>
+            <div class="text-slate-600 text-sm">
+              <%= user.email %>
             </div>
-            <span id="read-more-btn" class="cursor-pointer  mx-auto text-lime-500 hover:underline">
-              Read More
-            </span>
-            <span id="read-less-btn" class="cursor-pointer mx-auto hidden text-lime-500 hover:underline">
-              Read Less
-            </span>
-            <div class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2">
-              <!-- icons -->
-              <div class="cursor-pointer">
-                <i class="ri-thumb-up-line"></i>
-                <span class="text-zinc-600">
-                  <%= post.likes.length %>
-                </span>
-              </div>
-              <div class="cursor-pointer">
-                <i class="ri-chat-3-line"></i>
-                <span class="text-zinc-600">
-                  <%= post.comments.length %>
-                </span>
-              </div>
-              <div class="cursor-pointer">
-                <i class="ri-share-line"></i>
-              </div>
+            <div class="h-[1px] rounded-xl bg-white mt-32"></div>
+
+            <div class="flex justify-center items-center mt-3 text-lg font-semibold">
+              <h1 class="text-white">
+                Your Posts
+                <div class="h-[3px] rounded-lg w-full bg-lime-500"></div>
+              </h1>
+            </div>
+
+            <!-- user posts -->
+            <div id="feed-container"
+              class="w-full relative top-3 flex flex-col justify-center items-center mx-auto mt-2">
+              <% user.posts.forEach(function(post){ %>
+                <div
+                  class="card border-b-4 border-lime-500 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]">
+                  <div class="dets flex gap-3 relative items-center mb-3">
+                    <a href="/publicprofile/<%= user.username %>"><img src="../images/<%= user.profileimg %>" alt=""
+                        class="border h-[40px] rounded-full" /></a>
+                    <a href="/publicprofile/<%= user.username %>">
+                      <div class="font-semibold">
+                        <%= user.username %>
+                      </div>
+                    </a>
+                    <div class="text-lime-500">
+                      <%= user.followers.length %> followers
+                    </div>
+                    <i class="delete fa-regular fa-trash-can fa-lg absolute cursor-pointer right-0"></i>
+                  </div>
+                  <div class="hero flex flex-col items-start justify-center mt-2 overflow-hidden">
+                    <div class="content text-start break-words" id="content">
+                      <!-- Initial content with limited characters -->
+                      <pre id="content" class="whitespace-pre-wrap"><%= post.Truncatedcontent %></pre>
+                      <!-- Full content (hidden by default) -->
+                      <pre id="full-content" class="hidden whitespace-pre-wrap"><%= post.content %></pre>
+                    </div>
+                    <span id="read-more-btn" class="cursor-pointer  mx-auto text-lime-500 hover:underline">
+                      Read More
+                    </span>
+                    <span id="read-less-btn" class="cursor-pointer mx-auto hidden text-lime-500 hover:underline">
+                      Read Less
+                    </span>
+                    <div class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2">
+                      <!-- icons -->
+                      <div class="cursor-pointer">
+                        <i class="ri-thumb-up-line"></i>
+                        <span class="text-zinc-600">
+                          <%= post.likes.length %>
+                        </span>
+                      </div>
+                      <div class="cursor-pointer">
+                        <i class="ri-chat-3-line"></i>
+                        <span class="text-zinc-600">
+                          <%= post.comments.length %>
+                        </span>
+                      </div>
+                      <div class="cursor-pointer">
+                        <i class="ri-share-line"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <% }) %>
             </div>
           </div>
-        </div>
+          <script>
+            //readmore and readless
+            document.addEventListener("DOMContentLoaded", function () {
+              const readMoreBtns = document.querySelectorAll("#read-more-btn");
+              const readLessBtns = document.querySelectorAll("#read-less-btn");
+              const contents = document.querySelectorAll("#content");
+              const fullContents = document.querySelectorAll("#full-content");
 
-        <% }) %>
-    </div>
-  </div>
-  <script>
-    //readmore and readless
-    document.addEventListener("DOMContentLoaded", function () {
-      const readMoreBtns = document.querySelectorAll("#read-more-btn");
-      const readLessBtns = document.querySelectorAll("#read-less-btn");
-      const contents = document.querySelectorAll("#content");
-      const fullContents = document.querySelectorAll("#full-content");
+              readMoreBtns.forEach((readMoreBtn, index) => {
+                readMoreBtn.addEventListener("click", function () {
+                  console.log("readmore");
+                  contents[index].innerHTML = fullContents[index].innerHTML;
+                  readMoreBtn.classList.add("hidden");
+                  readLessBtns[index].classList.remove("hidden");
+                });
+              });
 
-      readMoreBtns.forEach((readMoreBtn, index) => {
-        readMoreBtn.addEventListener("click", function () {
-          console.log("readmore");
-          contents[index].innerHTML = fullContents[index].innerHTML;
-          readMoreBtn.classList.add("hidden");
-          readLessBtns[index].classList.remove("hidden");
-        });
-      });
+              readLessBtns.forEach((readLessBtn, index) => {
+                readLessBtn.addEventListener("click", function () {
+                  console.log("readless");
+                  contents[index].innerHTML =
+                    fullContents[index].innerHTML.slice(0, 150) + "...";
+                  readMoreBtns[index].classList.remove("hidden");
+                  readLessBtn.classList.add("hidden");
+                });
+              });
+            });
 
-      readLessBtns.forEach((readLessBtn, index) => {
-        readLessBtn.addEventListener("click", function () {
-          console.log("readless");
-          contents[index].innerHTML =
-            fullContents[index].innerHTML.slice(0, 150) + "...";
-          readMoreBtns[index].classList.remove("hidden");
-          readLessBtn.classList.add("hidden");
-        });
-      });
-    });
+            const menuIcon = document.getElementById("menu-icon");
+            const dropdownMenu = document.getElementById("dropdown-menu");
 
-    const menuIcon = document.getElementById("menu-icon");
-    const dropdownMenu = document.getElementById("dropdown-menu");
+            menuIcon.addEventListener("click", function (event) {
+              event.preventDefault(); // Prevent the default behavior of the <i> element
+              dropdownMenu.classList.toggle("hidden");
+            });
 
-    menuIcon.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevent the default behavior of the <i> element
-      dropdownMenu.classList.toggle("hidden");
-    });
+            menuIcon.addEventListener("click", function (event) {
+              event.preventDefault(); // Prevent the default behavior of the <i> element
+              dropdownMenu.classList.toggle("hidden");
+            });
 
+            const input = document.querySelector("#Searchinp");
+            let clutter = "";
+            input.addEventListener("keyup", function () {
+              console.log(input.value, '.')
+              if (input.value !== "") {
+                axios.get(`/username/${input.value}`)
+                  .then((data) => {
+                    if (data.data.length > 0) {
+                      clutter = "";
+                      data.data.forEach(function (e) {
+                        clutter += `
+                    <div class="">
+                        <div class="w-full flex bg-blue-50 overflow-hidden gap-5 items-center px-5 py-2 rounded-xl" id="elem">
+                            <a href="/publicprofile/${e.username}"><div class="overflow-hidden">
+                                <img class="w-[30px] object-cover rounded-full cursor-pointer"  src="../images/${e.profileimg}" alt="">    
+                            </div></a>
+                            <a href="/publicprofile/${e.username}"><div class="cursor-pointer text-semibold">
+                                <span>${e.username}</span>
+                            </div></a>
+                        </div>
+                    </div>
+                    `
+                      })
+                    }
+                    else {
+                      document.querySelector(".searchvals").innerHTML = ""
+                    }
+                    document.querySelector(".searchvals").innerHTML = clutter;
+                  })
+              }
+              else {
+                document.querySelector(".searchvals").innerHTML = ""
+              }
+            });
 
-    const deleteBtns = document.querySelectorAll('.delete');
-    const deleteContainer = document.querySelector('#deleteContainer');
-    const cancelButton = document.querySelector('#deleteContainer .btns button:first-child');
+            const deleteBtns = document.querySelectorAll('.delete');
+            const deleteContainer = document.querySelector('#deleteContainer');
+            const cancelButton = document.querySelector('#deleteContainer .btns button:first-child');
 
-    deleteBtns.forEach((deleteBtn) => {
-      deleteBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        deleteContainer.classList.remove('hidden');
-        deleteContainer.classList.add('flex');
-      });
-    })
+            deleteBtns.forEach((deleteBtn) => {
+              deleteBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                deleteContainer.classList.remove('hidden');
+                deleteContainer.classList.add('flex');
+              });
+            })
 
-    document.addEventListener('click', (event) => {
-      const clickedElement = event.target;
-      const isDeleteContainer = clickedElement === deleteContainer;
-      const isCancelButton = clickedElement === cancelButton;
+            document.addEventListener('click', (event) => {
+              const clickedElement = event.target;
+              const isDeleteContainer = clickedElement === deleteContainer;
+              const isCancelButton = clickedElement === cancelButton;
 
-      if (!isDeleteContainer || !isCancelButton) {
-        deleteContainer.classList.remove('flex');
-        deleteContainer.classList.add('hidden');
-      }
-    });
+              if (!isDeleteContainer || !isCancelButton) {
+                deleteContainer.classList.remove('flex');
+                deleteContainer.classList.add('hidden');
+              }
+            });
 
-    cancelButton.addEventListener('click', () => {
-      deleteContainer.classList.add('hidden');
-    });
+            cancelButton.addEventListener('click', () => {
+              deleteContainer.classList.add('hidden');
+            });
 
-  </script>
-  <%- include('./partials/footer') %>
+          </script>
+          <%- include('./partials/footer') %>
