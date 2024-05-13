@@ -1,5 +1,5 @@
 <%- include('./partials/header') %>
-    <main>
+    <!-- <main>
         <video src="../images/bg-video.mp4" muted id="video"
             class="w-full h-screen object-cover z-[-1] fixed top-0"></video>
         <div id="page1" class="w-full h-screen relative top-0">
@@ -30,6 +30,17 @@
         // Add scroll event listener to the window
         window.addEventListener('scroll', handleScroll);
 
-    </script>
+    </script> -->
+
+    <main data-scroll-container>
+        <div id="page1" class="w-full h-screen bg-slate-800 relative flex" data-scroll>
+            <div class="w-[50%] flex justify-center items-center">
+                <div class="w-[25%] overflow-hidden"><img src="../images/IMG_20240413_143707-removebg.png" alt="" class="w-full object-cover"></div>
+            </div>
+            <div class="w-[50%]"></div>
+        </div>
+        <div id="page2" class="w-full h-screen bg-red-800 relative" data-scroll></div>
+        <div id="page3" class="w-full h-screen bg-transparent relative" data-scroll></div>
+    </main>
 
 <%- include('./partials/footer') %>

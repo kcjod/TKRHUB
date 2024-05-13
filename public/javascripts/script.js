@@ -9,3 +9,10 @@
 //     opacity: 0,
 //     duration: 1
 // })
+
+
+const scroll = new LocomotiveScroll({
+    el: document.querySelector('[data-scroll-container]'),
+    smooth: true,
+    lerp:0.05
+});

@@ -39,17 +39,8 @@ router.get("/feed", isLoggedIn, async function(req, res, next) {
     const posts = (await postModel.find().populate("author")).slice().reverse();
     const user = await userModel.findOne({username: req.session.passport.user});
 
-    // Loop through each post and check if the user is following the author
-    posts.forEach(post => {
-      if (user.following.includes(post.author._id)) {
-        isfollowing = true;
-      } else {
-        isfollowing = false;
-      }
-    });
-
     // Render the 'feed' template with the retrieved posts
-    res.render("feed", { posts: posts, user: user, nav: true, following: isfollowing });
+    res.render("feed", { posts: posts, user: user, nav: true });
   } catch (error) {
     next(error);
   }
