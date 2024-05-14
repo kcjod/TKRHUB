@@ -1,55 +1,16 @@
 <%- include('./partials/header') %>
-    <!-- <main>
-        <video src="../images/bg-video.mp4" muted id="video"
-            class="w-full h-screen object-cover z-[-1] fixed top-0"></video>
-        <div id="page1" class="w-full h-screen relative top-0">
-            <div id="box" class="absolute">This is page 1</div>
+
+    <main class="relative top-0" data-scroll-container>
+        <div id="logostart" class="w-full h-screen bg-slate-300 relative top-0 flex justify-center items-center">
+            <img src="../images/1000117438-removebg-preview.png" alt="" class="w-[15vw]">
         </div>
-        <div id="page2" class="w-full h-screen relative top-0">
-            <div id="box" class="absolute">This is page 2</div>
-        </div>
-    </main>
-
-    <script>
-        var video = document.getElementById('video');
-        var scrollTimeout;
-
-        function handleScroll() {
-            // Play the video when scrolling
-            video.play();
-
-            // Clear the previous timeout to avoid multiple pause actions
-            clearTimeout(scrollTimeout);
-
-            // Set a timeout to pause the video after scrolling stops
-            scrollTimeout = setTimeout(function () {
-                video.pause();
-            }, 300); // Adjust the timeout duration as needed
-        }
-
-        // Add scroll event listener to the window
-        window.addEventListener('scroll', handleScroll);
-
-    </script> -->
-
-    <main data-scroll-container>
-        <div id="page1" class="w-full h-screen bg-slate-800 relative flex" data-scroll>
-            <div class="w-[50%] flex justify-center items-center">
-                <div class="w-[25%] overflow-hidden"><img id="lpic" src="../images/IMG_20240413_143707-removebg.png" alt="" class="w-full object-cover"></div>
+        <div id="pages" data-scroll-container class="relative top-0 hidden">
+            <div id="page1" class="w-full h-screen bg-slate-800 relative">
+            
             </div>
-            <div class="w-[50%] flex flex-col justify-center items-center">
-                <div id="lbox" class="text-[5vw] text-bold text-white uppercase">welcome!!</div>
-                <div id="lbox" class="text-[5vw] text-bold text-white uppercase">to TKR</div>
-                <div id="lbox" class="text-[5vw] text-bold text-white uppercase">Interview Bits</div>
-
-                <div>
-                    <div></div>
-                </div>
-
-            </div>
+            <div id="page2" class="w-full h-screen bg-red-800 relative"></div>
+            <div id="page3" class="w-full h-screen bg-green-800 relative"></div>
         </div>
-        <div id="page2" class="w-full h-screen bg-red-800 relative" data-scroll></div>
-        <div id="page3" class="w-full h-screen bg-transparent relative" data-scroll></div>
     </main>
 
 <%- include('./partials/footer') %>
