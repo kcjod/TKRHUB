@@ -42,6 +42,10 @@ body{
   display: none;
 }
 
+.shadow-blend-border {
+  box-shadow: 0 0 20px 40px rgba(0, 245, 0, 1); /* Adjust the color and spread as needed */
+}
+
 @media (max-width: 1024px) {
   .sc{
     width: 5vw;
