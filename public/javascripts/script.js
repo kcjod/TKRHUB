@@ -35,68 +35,21 @@ gsap.to("#logostart", {
 });
 
 
-let q1 = document.getElementById("q1");
-let q2 = document.getElementById("q2");
-let q3 = document.getElementById("q3");
-let q4 = document.getElementById("q4");
-let a1 = document.getElementById("a1");
-let a2 = document.getElementById("a2");
-let a3 = document.getElementById("a3");
-let a4 = document.getElementById("a4");
+let questions = document.querySelectorAll('[id^="q"]');
+let answers = document.querySelectorAll('[id^="a"]');
 let flag = 0;
 
-q1.addEventListener("click",function(){
-  a2.style.display = "none";
-  a3.style.display = "none";
-  a4.style.display = "none";
-  if(flag === 0){
-    a1.style.display = "block";
-    flag = 1;
-  }
-  else{
-    a1.style.display = "none";
-    flag = 0;
-  }
-});
+function toggleDisplay(index) {
+  answers.forEach((answer, i) => {
+    if (i === index) {
+      answer.style.display = (flag === 0) ? "block" : "none";
+    } else {
+      answer.style.display = "none";
+    }
+  });
+  flag = (flag === 0) ? 1 : 0;
+}
 
-q2.addEventListener("click",function(){
-  a1.style.display = "none";
-  a3.style.display = "none";
-  a4.style.display = "none";
-  if(flag === 0){
-    a2.style.display = "block";
-    flag = 1;
-  }
-  else{
-    a2.style.display = "none";
-    flag = 0;
-  }
-});
-
-q3.addEventListener("click",function(){
-  a2.style.display = "none";
-  a1.style.display = "none";
-  a4.style.display = "none";
-  if(flag === 0){
-    a3.style.display = "block";
-    flag = 1;
-  }
-  else{
-    a3.style.display = "none";
-    flag = 0;
-  }
-});
-
-q4.addEventListener("click",function(){
-  a2.style.display = "none";
-  a3.style.display = "none";
-  a1.style.display = "none";
-  if(flag === 0){
-    a4.style.display = "block";
-    flag = 1;
-  }
-  else{
-    a4.style.display = "none";
-    flag = 0;
-  }
+questions.forEach((question, index) => {
+  question.addEventListener("click", () => toggleDisplay(index));
 });
