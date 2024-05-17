@@ -1,6 +1,6 @@
 <%- include('./partials/header') %>
 
-    <main class="relative top-0 max-w-[2000px] mx-auto my-0">
+    <main class="relative top-0 max-w-[2000px] mx-auto my-0" data-scroll-container>
         <div id="logostart" class="w-full h-screen bg-[#24E400] fixed z-50 top-0 flex justify-center items-center">
             <img src="../images/1000117438-removebg-preview.png" alt="" class="w-[15vw]" />
         </div>
@@ -8,10 +8,10 @@
             <nav id="nav" class="h-[12vh] flex justify-between items-center">
                 <div class="text-white text-3xl"><span class="text-[#24E400]">TKR</span> Interview Bits</div>
                 <div class="flex gap-5">
-                    <button
-                        class="px-4 rounded-md py-2 bg-[#24E400] text-white duration-200 hover:bg-[#26F500] ">Login</button>
-                    <button
-                        class="px-3 rounded-md py-2 bg-slate-100 text-[#24E400] duration-200  hover:bg-white">Register</button>
+                    <a href="/login"><button
+                        class="px-4 rounded-md py-2 bg-[#24E400] text-white duration-200 hover:bg-[#26F500]">Login</button></a>
+                    <a href="/signup"><button
+                        class="px-3 rounded-md py-2 bg-slate-100 text-[#24E400] duration-200  hover:bg-white">Register</button></a>
                 </div>
             </nav>
             <div id="contentp1" class=" w-full min-h-[82vh] md:flex gap-4  items-center ">
@@ -37,19 +37,19 @@
             </div>
             <div id="cardsp2" class="w-full h-[85%] flex justify-between items-center px-3">
                 <div class="w-[30%]">
-                    <div class="h-[250px] border border-white"></div>
+                    <div class="h-[250px] overflow-hidden"><img src="../images/2-img1.jpg" alt="" class="h-full object-cover"></div>
                     <div class="text-white text-md my-2 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Explicabo mollitia ut non molestias necessitatibus obcaecati nesciunt neque labore
                         accusamus assumenda.</div>
                 </div>
                 <div class="w-[30%]">
-                    <div class="h-[250px] border border-white"></div>
+                    <div class="h-[250px] overflow-hidden"><img src="../images/p2-img2.png" alt="" class="h-full object-cover"></div>
                     <div class="text-white text-md my-2 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Explicabo mollitia ut non molestias necessitatibus obcaecati nesciunt neque labore
                         accusamus assumenda.</div>
                 </div>
                 <div class="w-[30%]">
-                    <div class="h-[250px] border border-white"></div>
+                    <div class="h-[250px] overflow-hidden"><img src="../images/p2-img3.png" alt="" class="h-full object-cover"></div>
                     <div class="text-white text-md my-2 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Explicabo mollitia ut non molestias necessitatibus obcaecati nesciunt neque labore
                         accusamus assumenda.</div>
