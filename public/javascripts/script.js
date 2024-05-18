@@ -104,3 +104,5 @@ gsap.from("#page2 img", {
       scrub: 4
   }
 });
+
+var a = 99;
