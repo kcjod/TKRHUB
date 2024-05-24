@@ -1,37 +1,5 @@
-function loco(){
-  gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-  // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
-  
-  const locoScroll = new LocomotiveScroll({
-    el: document.querySelector("main"),
-    smooth: true
-  });
-  // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
-  locoScroll.on("scroll", ScrollTrigger.update);
-  
-  // tell ScrollTrigger to use these proxy methods for the "main" element since Locomotive Scroll is hijacking things
-  ScrollTrigger.scrollerProxy("main", {
-    scrollTop(value) {
-      return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
-    }, // we don't have to define a scrollLeft because we're only scrolling vertically.
-    getBoundingClientRect() {
-      return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-    },
-    // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
-    pinType: document.querySelector("main").style.transform ? "transform" : "fixed"
-  });
-  
-  
-  // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
-  ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
-  
-  // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
-  ScrollTrigger.refresh();
-}
-loco()
-
-// GSAP Animations
 gsap.to("#logostart", {
   y: "-100vh",
   delay: 2,
@@ -92,17 +60,63 @@ tl.from("#rightp1 img", {
   duration: 1
 });
 
-gsap.from("#page2 img", {
-  y: -100,
-  opacity: 0,
-  duration: 1,
-  scrollTrigger: {
-      trigger: "#page2 img",
-      scroller: "main", // Ensure the scroller matches the Locomotive Scroll element
-      start: "bottom bottom",
-      end: "top 40%",
-      scrub: 4
+gsap.from("#p2img", {
+  y: -260,
+  opacity:0,
+  scrollTrigger:{
+    trigger:"#p2img",
+    scroller:"body",
+    start:"top bottom",
+    end:"top top",
+    scrub:3
   }
 });
 
-var a = 99;
+gsap.from("#p2box", {
+  opacity:0,
+  scrollTrigger:{
+    trigger:"#p2box",
+    scroller:"body",
+    start:"top bottom",
+    end:"top center",
+    scrub:2
+  }
+});
+
+
+// Function to make a card draggable
+function makeDraggable(card) {
+  let isDragging = false;
+  let offsetX, offsetY;
+
+  card.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.offsetX;
+      offsetY = e.offsetY;
+      card.style.cursor = "grabbing";
+  });
+
+  document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+          const newX = e.clientX - offsetX;
+          const newY = e.clientY - offsetY;
+          card.style.left = `${newX - 100}px`; // Adjusted to make it fit better visually
+          card.style.top = `${newY - 25}px`; // Adjusted to make it fit better visually
+      }
+  });
+
+  document.addEventListener("mouseup", () => {
+      if (isDragging) {
+          isDragging = false;
+          card.style.cursor = "grab";
+      }
+  });
+}
+
+// Select tcard1 and make it draggable
+const tcard1 = document.querySelector("#tcard1");
+makeDraggable(tcard1);
+
+// Select tcard2 and make it draggable
+const tcard2 = document.querySelector("#tcard2");
+makeDraggable(tcard2);
