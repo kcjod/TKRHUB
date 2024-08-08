@@ -1,128 +1,314 @@
 <%- include('./partials/header') %>
 
-    <main class="relative top-0 max-w-[2000px] mx-auto my-0">
-        <div id="logostart" class="w-full h-screen bg-[#24E400] fixed z-50 top-0 flex justify-center items-center">
-            <img src="../images/1000117438-removebg-preview.png" alt="" class="w-[15vw]" />
+<main class="relative top-0 max-w-[2000px] mx-auto my-0">
+  <div
+    id="logostart"
+    class="w-full h-screen bg-[#24E400] fixed z-50 top-0 flex justify-center items-center"
+  >
+    <img
+      src="../images/1000117438-removebg-preview.png"
+      alt=""
+      class="w-[15vw]"
+    />
+  </div>
+  <div id="page1" class="w-[85%] mx-auto my-0 h-screen relative">
+    <% if (!user) { %>
+    <!-- Content for users who are not logged in -->
+    <nav id="nav" class="h-[12vh] flex justify-between items-center">
+      <div class="text-white text-3xl">
+        <span class="text-[#24E400]">TKR</span> Interview Bits
+      </div>
+      <div class="flex gap-5">
+        <a href="/login">
+          <button
+            class="px-4 rounded-md py-2 bg-[#24E400] text-white duration-200 hover:bg-[#26F500]"
+          >
+            Login
+          </button>
+        </a>
+        <a href="/signup">
+          <button
+            class="px-3 rounded-md py-2 bg-slate-100 text-[#24E400] duration-200 hover:bg-white"
+          >
+            Register
+          </button>
+        </a>
+      </div>
+    </nav>
+    <% } else { %>
+    <!-- Content for logged-in users -->
+    <nav id="nav" class="h-[12vh] flex justify-between items-center">
+      <div class="text-white text-3xl">
+        <span class="text-[#24E400]">TKR</span> Interview Bits
+      </div>
+      <div class="flex gap-5">
+        <a href="/feed">
+          <button
+            class="px-4 rounded-md py-2 bg-[#24E400] text-white duration-200 hover:bg-[#26F500]"
+          >
+            Feed
+          </button>
+        </a>
+        <a href="/profile">
+          <button
+            class="px-4 rounded-md py-2 bg-[#24E400] text-white duration-200 hover:bg-[#26F500]"
+          >
+            Profile
+          </button>
+        </a>
+        <a href="/logout">
+          <button
+            class="px-3 rounded-md py-2 bg-[#26F500] text-white duration-200 hover:bg-[#26F500]"
+          >
+            Logout
+          </button>
+        </a>
+      </div>
+    </nav>
+    <% } %>
+
+    <div id="contentp1" class="w-full min-h-[82vh] md:flex gap-4 items-center">
+      <div
+        id="leftp1"
+        class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh] p-5 flex flex-col gap-3 justify-start items-start"
+      >
+        <h1 class="text-[5vw] text-[#24E400]">Welcome to TIB</h1>
+        <h2 class="text-[2.5vw] text-slate-200">
+          Empowering Careers, One Story at a Time
+        </h2>
+        <p class="text-[1.8vw] text-white mt-4">
+          Explore real interview experiences from professionals across various
+          industries. Learn from their stories, prepare better, and succeed in
+          your career journey.
+        </p>
+      </div>
+      <div
+        id="rightp1"
+        class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh] flex justify-center items-center"
+      >
+        <img
+          src="/images/hero.png"
+          alt=""
+          class="rounded-[50%] w-[70%] shadow-blend-border drop-shadow-2xl"
+        />
+      </div>
+    </div>
+    <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
+  </div>
+  <div id="page2" class="w-[85%] mx-auto h-screen relative">
+    <div class="flex justify-center mt-7">
+      <h1 class="text-3xl text-lime-500">Benefits</h1>
+    </div>
+    <div
+      id="cardsp2"
+      class="w-full h-[85%] flex justify-between items-center px-3"
+    >
+      <div class="w-[30%] flex gap-5 items-center flex-col">
+        <div class="h-[250px] rounded-md overflow-hidden">
+          <img
+            id="p2img"
+            src="../images/2-img1.jpg"
+            alt=""
+            class="h-full rounded-md object-cover"
+          />
         </div>
-        <div id="page1" class="w-[85%] mx-auto my-0 h-screen relative">
-            <nav id="nav" class="h-[12vh] flex justify-between items-center">
-                <div class="text-white text-3xl"><span class="text-[#24E400]">TKR</span> Interview Bits</div>
-                <div class="flex gap-5">
-                    <a href="/login"><button
-                        class="px-4 rounded-md py-2 bg-[#24E400] text-white duration-200 hover:bg-[#26F500]">Login</button></a>
-                    <a href="/signup"><button
-                        class="px-3 rounded-md py-2 bg-slate-100 text-[#24E400] duration-200  hover:bg-white">Register</button></a>
-                </div>
-            </nav>
-            <div id="contentp1" class=" w-full min-h-[82vh] md:flex gap-4  items-center ">
-                <div id="leftp1"
-                    class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh] p-5 flex flex-col gap-3 justify-start items-start">
-                    <h1 class="text-[5vw] text-[#24E400]">Lorem ipsum</h1>
-                    <h2 class="text-[2.5vw] text-slate-200">Lorem ipsum dolor sit amet chiko</h2>
-                    <p class="text-[1.8vw] text-white mt-4"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Nam autem inventore natus quos hic reprehenderit? Soluta sed sapiente optio enim? Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Fugiat, quo?</p>
-                </div>
-                <div id="rightp1" class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh]  flex justify-center items-center">
-                    <img src="/images/hero.png" alt=""
-                        class="rounded-[50%] w-[70%] shadow-blend-border drop-shadow-2xl">
-                </div>
-            </div>
-            <div class="h-[1px] w-full bg-white absolute bottom-0">
-            </div>
+        <h3 class="text-white text-xl">Comprehensive Interview Preparation</h3>
+        <div id="p2box" class="text-white text-md my-2 text-center">
+          Access detailed interview experiences and prepare comprehensively for
+          your next job interview. Gain insights into the questions asked and
+          the evaluation criteria used by top companies
         </div>
-        <div id="page2" class="w-[85%] mx-auto h-screen relative">
-            <div class="flex justify-center mt-7">
-                <h1 class="text-3xl text-lime-500">Benefits</h1>
-            </div>
-            <div id="cardsp2" class="w-full h-[85%] flex justify-between items-center px-3">
-                <div class="w-[30%]">
-                    <div class="h-[250px] rounded-md overflow-hidden"><img id="p2img" src="../images/2-img1.jpg" alt="" class="h-full rounded-md object-cover"></div>
-                    <div id="p2box" class="text-white text-md my-2 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Explicabo mollitia ut non molestias necessitatibus obcaecati nesciunt neque labore
-                        accusamus assumenda.</div>
-                </div>
-                <div class="w-[30%]">
-                    <div class="h-[250px] rounded-md overflow-hidden"><img id="p2img" src="../images/p2-img2.png" alt="" class="h-full rounded-md object-cover"></div>
-                    <div id="p2box" class="text-white text-md my-2 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Explicabo mollitia ut non molestias necessitatibus obcaecati nesciunt neque labore
-                        accusamus assumenda.</div>
-                </div>
-                <div class="w-[30%]">
-                    <div class="h-[250px] rounded-md overflow-hidden"><img id="p2img" src="../images/p2-img3.png" alt="" class="h-full object-cover"></div>
-                    <div id="p2box" class="text-white text-md my-2 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Explicabo mollitia ut non molestias necessitatibus obcaecati nesciunt neque labore
-                        accusamus assumenda.</div>
-                </div>
-            </div>
-            <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
+      </div>
+      <div class="w-[30%] flex gap-5 items-center flex-col">
+        <div class="h-[250px] rounded-md overflow-hidden">
+          <img
+            id="p2img"
+            src="../images/p2-img2.png"
+            alt=""
+            class="h-full rounded-md object-cover"
+          />
         </div>
-        <div id="page3" class="w-[85%] mx-auto h-screen relative">
-            <div class="flex justify-center my-10">
-                <h1 class="text-3xl text-lime-500">Testimonials</h1>
-            </div>
-            <div id="testcards" class="h-[85%] flex justify-center items-center">
-                <div id="tcard1" class="w-[200px] bg-white p-2 absolute z-[10]">
-                    <div id="heading"><h1 class="text-xl text-center">This is haeding</h1></div>
-                    <div id="cbody" class="text-justify">This is body content Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, illo? Sed veniam soluta rem, quos velit culpa delectus quia deserunt.</div>
-                </div>
-                <div id="tcard2" class="w-[200px] bg-white p-2 absolute z-[9]">
-                    <div id="heading"><h1 class="text-xl text-center">This is haeding</h1></div>
-                    <div id="cbody" class="text-justify">This is body content Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, illo? Sed veniam soluta rem, quos velit culpa delectus quia deserunt.</div>
-                </div>
-            </div>
-            <div class="h-[1px] w-full bg-white absolute bottom-0">
-            </div>
+        <h3 class="text-white text-xl">Real Stories from Real Professionals</h3>
+        <div id="p2box" class="text-white text-md my-2 text-center">
+          Learn from the firsthand accounts of professionals who have
+          successfully navigated their interview processes. Understand the
+          strategies they used to stand out and secure their positions.
         </div>
-        <div id="page4" class="w-[85%] mx-auto h-screen relative">
-            <div class="flex justify-center my-10">
-                <h1 class="text-3xl text-lime-500">Frequently Asked Questions</h1>
-            </div>
-            <div class="w-full flex flex-col gap-5">
-                <div id="q1"
-                    class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white">
-                    <h1 class="text-2xl">What is TKR Interview Bits?</h1>
-                    <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
-                </div>
-                <div id="a1" class="w-full px-5 text-white text-lg mb-4 text-justify hidden">Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quidem voluptatem sequi voluptatum sint exercitationem eius iusto
-                    ipsum sapiente enim velit corrupti explicabo quaerat dignissimos maiores, quia delectus. Numquam
-                    reprehenderit veritatis alias consequatur esse iusto voluptate amet nemo error facere? Tenetur.
-                </div>
-                <div id="q2"
-                    class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white">
-                    <h1 class="text-2xl">What is TKR Interview Bits?</h1>
-                    <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
-                </div>
-                <div id="a2" class="w-full px-5 text-white text-lg mb-4 text-justify hidden">Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quidem voluptatem sequi voluptatum sint exercitationem eius iusto
-                    ipsum sapiente enim velit corrupti explicabo quaerat dignissimos maiores, quia delectus. Numquam
-                    reprehenderit veritatis alias consequatur esse iusto voluptate amet nemo error facere? Tenetur.
-                </div>
-                <div id="q3"
-                    class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white">
-                    <h1 class="text-2xl">What is TKR Interview Bits?</h1>
-                    <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
-                </div>
-                <div id="a3" class="w-full px-5 text-white text-lg mb-4 text-justify hidden">Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quidem voluptatem sequi voluptatum sint exercitationem eius iusto
-                    ipsum sapiente enim velit corrupti explicabo quaerat dignissimos maiores, quia delectus. Numquam
-                    reprehenderit veritatis alias consequatur esse iusto voluptate amet nemo error facere? Tenetur.
-                </div>
-                <div id="q4"
-                    class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white">
-                    <h1 class="text-2xl">What is TKR Interview Bits?</h1>
-                    <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
-                </div>
-                <div id="a4" class="w-full px-5 text-white text-lg mb-4 text-justify hidden">Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quidem voluptatem sequi voluptatum sint exercitationem eius iusto
-                    ipsum sapiente enim velit corrupti explicabo quaerat dignissimos maiores, quia delectus. Numquam
-                    reprehenderit veritatis alias consequatur esse iusto voluptate amet nemo error facere? Tenetur.
-                </div>
-            </div>
-            <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
+      </div>
+      <div class="w-[30%] flex gap-5 items-center flex-col">
+        <div class="h-[250px] rounded-md overflow-hidden">
+          <img
+            id="p2img"
+            src="../images/p2-img3.png"
+            alt=""
+            class="h-full rounded-md object-cover"
+          />
         </div>
-        <div id="page5" class="w-[85%] mx-auto h-screen relative">
+        <h3 class="text-white text-xl">Stay Ahead of the Curve</h3>
+        <div id="p2box" class="text-white text-md my-2 text-center">
+          Keep up with the latest trends and changes in interview techniques and
+          industry expectations. Equip yourself with the knowledge and
+          confidence to excel in any interview scenario.
+        </div>
+      </div>
+    </div>
+    <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
+  </div>
+  <div id="page3" class="w-[85%] mx-auto h-screen relative">
+    <div class="flex justify-center my-10">
+      <h1 class="text-3xl text-lime-500">Testimonials</h1>
+    </div>
+    <h1 id="drag-text" class="text-white text-xl text-center">
+      DRAG TO MOVE👇
+    </h1>
+    <div id="testcards" class="h-[80%] flex justify-center items-center">
+      <div id="tcard1" class="w-[300px] bg-white p-2 absolute z-[10]">
+        <div id="heading">
+          <h1 class="text-xl text-center">A Game Changer for My Career</h1>
+        </div>
+        <div id="cbody" class="text-justify">
+          TKR Interview Bits provided me with invaluable insights into the
+          interview process at several top companies. The real-life experiences
+          shared by others helped me prepare thoroughly and confidently. Thanks
+          to this platform, I landed my dream job!
+        </div>
+      </div>
+      <div id="tcard2" class="w-[300px] bg-white p-2 absolute z-[10]">
+        <div id="heading">
+          <h1 class="text-xl text-center">
+            A Valuable Resource for Job Seekers
+          </h1>
+        </div>
+        <div id="cbody" class="text-justify">
+          TKR Interview Bits was a game-changer for my job search. The detailed
+          interview experiences from professionals in various fields gave me a
+          significant edge. I felt well-prepared and confident going into my
+          interviews, and it made all the difference!
+        </div>
+      </div>
+      <div id="tcard3" class="w-[300px] bg-white p-2 absolute z-[10]">
+        <div id="heading">
+          <h1 class="text-xl text-center">Essential for Interview Prep</h1>
+        </div>
+        <div id="cbody" class="text-justify">
+          I used TKR Interview Bits to prepare for my tech interviews, and it
+          was incredibly helpful. The platform’s real-world examples and
+          detailed insights helped me anticipate questions and refine my
+          answers. I highly recommend it to anyone looking to ace their
+          interviews!
+        </div>
+      </div>
+      <div id="tcard4" class="w-[300px] bg-white p-2 absolute z-[10]">
+        <div id="heading">
+          <h1 class="text-xl text-center">A Must-Have for Career Growth</h1>
+        </div>
+        <div id="cbody" class="text-justify">
+          TKR Interview Bits was instrumental in my career advancement. The
+          shared experiences from past candidates provided me with a clearer
+          understanding of what to expect. Thanks to this site, I navigated my
+          interviews with confidence and succeeded in landing a top position!
+        </div>
+      </div>
+      <div id="tcard5" class="w-[300px] bg-white p-2 absolute z-[10]">
+        <div id="heading">
+          <h1 class="text-xl text-center">Transformative Interview Prep</h1>
+        </div>
+        <div id="cbody" class="text-justify">
+          The insights from TKR Interview Bits were invaluable. The
+          comprehensive feedback and experiences shared helped me prepare more
+          effectively than I could have on my own. I felt ready and
+          well-informed for every interview, and it paid off with a job offer!
+        </div>
+      </div>
+    </div>
+    <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
+  </div>
+  <div id="page4" class="w-[85%] mx-auto min-h-[90vh] relative">
+    <div class="flex justify-center my-10">
+      <h1 class="text-3xl text-lime-500">Frequently Asked Questions</h1>
+    </div>
+    <div class="w-full flex flex-col gap-5">
+      <div
+        id="q1"
+        class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white"
+      >
+        <h1 class="text-2xl">What is TKR Interview Bits?</h1>
+        <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
+      </div>
+      <div
+        id="a1"
+        class="w-full px-5 text-white text-lg mb-4 text-justify hidden"
+      >
+        TKR Interview Bits is a web platform where individuals can share and
+        read interview experiences. It aims to help job seekers by providing
+        insights into various companies' interview processes, questions, and
+        expectations. Users can contribute their own experiences, browse through
+        posts from others, and gain valuable knowledge to prepare for their own
+        interviews.
+      </div>
+      <div
+        id="q2"
+        class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white"
+      >
+        <h1 class="text-2xl">Who can use TKR Interview Bits?</h1>
+        <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
+      </div>
+      <div
+        id="a2"
+        class="w-full px-5 text-white text-lg mb-4 text-justify hidden"
+      >
+        TKR Interview Bits is open to everyone, including students,
+        professionals, and job seekers from various fields. Whether you are
+        preparing for your first job interview or looking to switch careers, TKR
+        Interview Bits provides a platform to gain insights and share your own
+        experiences to help others.
+      </div>
+      <div
+        id="q3"
+        class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white"
+      >
+        <h1 class="text-2xl">Is TKR Interview Bits free to use?</h1>
+        <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
+      </div>
+      <div
+        id="a3"
+        class="w-full px-5 text-white text-lg mb-4 text-justify hidden"
+      >
+        Yes, TKR Interview Bits is free to use. Users can create an account,
+        browse interview experiences, and share their own stories without any
+        cost. Our mission is to provide accessible and valuable information to
+        help job seekers succeed in their interviews.
+      </div>
+      <div
+        id="q4"
+        class="w-full h-[12vh] flex justify-between px-5 items-center text-white border border-white"
+      >
+        <h1 class="text-2xl">
+          How can I benefit from using TKR Interview Bits?
+        </h1>
+        <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
+      </div>
+      <div
+        id="a4"
+        class="w-full px-5 text-white text-lg mb-4 text-justify hidden"
+      >
+        By using TKR Interview Bits, you can:
+        <br />
+        Gain Insights: Learn about different companies' interview processes and
+        what to expect. <br />
+        Prepare Better: Access a variety of interview questions and experiences
+        to help you prepare effectively. <br />
+        Share Knowledge: Contribute your own interview experiences to help
+        others in the community. <br />
+        Network: Connect with other job seekers and professionals to exchange
+        tips and advice. <br />
+        Stay Updated: Keep up with the latest trends and changes in interview
+        processes across various industries. <br />
+      </div>
+    </div>
+    <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
+  </div>
+  <!-- <div id="page5" class="w-[85%] mx-auto h-screen relative">
             <div class="flex justify-center my-10">
                 <h1 class="text-3xl text-lime-500">Developers</h1>
             </div>
@@ -145,11 +331,8 @@
                 </div>
                 <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
             </div>
-        </div>
-        <div id="footer" class="w-[85%] mx-auto h-[50vh] relative">
-        </div>
-    </main>
+        </div> -->
+  <div id="footer" class="w-[85%] mx-auto h-[50vh] relative"></div>
+</main>
 
-
-
-    <%- include('./partials/footer') %>
+<%- include('./partials/footer') %>

@@ -61,13 +61,12 @@ tl.from("#rightp1 img", {
 });
 
 gsap.from("#p2img", {
-  y: -260,
   opacity:0,
   scrollTrigger:{
     trigger:"#p2img",
     scroller:"body",
     start:"top bottom",
-    end:"top top",
+    end:"top center",
     scrub:3
   }
 });
@@ -78,8 +77,21 @@ gsap.from("#p2box", {
     trigger:"#p2box",
     scroller:"body",
     start:"top bottom",
-    end:"top center",
+    end:"top 60%",
     scrub:2
+  }
+});
+
+
+gsap.to("#drag-text", {
+  y: 5,
+  x: 10,
+  duration: 1,
+  repeat: -1,
+  yoyo: true,
+  scrollTrigger: {
+    trigger: "#drag-text",
+    scroller: "body",
   }
 });
 
@@ -120,3 +132,9 @@ makeDraggable(tcard1);
 // Select tcard2 and make it draggable
 const tcard2 = document.querySelector("#tcard2");
 makeDraggable(tcard2);
+const tcard3 = document.querySelector("#tcard3");
+makeDraggable(tcard3);
+const tcard4 = document.querySelector("#tcard4");
+makeDraggable(tcard4);
+const tcard5 = document.querySelector("#tcard5");
+makeDraggable(tcard5);

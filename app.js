@@ -3,8 +3,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressSession = require('express-session');
+const db = require("./config/db");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+
 
 const passport = require('passport');
 const flash = require("connect-flash");
