@@ -1,9 +1,9 @@
 <%- include('./partials/header') %>
 
-<main class="relative top-0 max-w-[2000px] mx-auto my-0">
+<div class="relative top-0">
   <div
     id="logostart"
-    class="w-full h-screen bg-[#24E400] fixed z-50 top-0 flex justify-center items-center"
+    class="w-full h-screen bg-[#24E400] fixed z-50 top-0 flex justify-center items-center overflow-hidden"
   >
     <img
       src="../images/1000117438-removebg-preview.png"
@@ -11,6 +11,9 @@
       class="w-[15vw]"
     />
   </div>
+</div>
+
+<main class="relative top-0 max-w-[2000px] mx-auto my-0">
   <div id="page1" class="w-[85%] mx-auto my-0 h-screen relative">
     <% if (!user) { %>
     <!-- Content for users who are not logged in -->
@@ -334,5 +337,21 @@
         </div> -->
   <div id="footer" class="w-[85%] mx-auto h-[50vh] relative"></div>
 </main>
+
+<script>
+
+
+  let main = document.querySelector("main");
+  let body = document.querySelector("body");
+
+  main.style.display = 'none'; // Hide the main element
+body.style.overflow = 'hidden'; // Hide the scrollbar
+
+  setTimeout(()=>{
+    main.style.display = "block";
+    body.style.overflow = 'auto';
+  },3000);
+  
+</script>
 
 <%- include('./partials/footer') %>

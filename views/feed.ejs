@@ -192,6 +192,8 @@
 
     document.addEventListener('click', (event) => {
         const clickedElement = event.target;
+        console.log(event.target);
+        
         const isDeleteContainer = clickedElement === deleteContainer;
         const isCancelButton = clickedElement === cancelButton;
 

@@ -1,3 +1,4 @@
+//GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to("#logostart", {

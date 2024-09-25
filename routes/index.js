@@ -36,10 +36,7 @@ router.get("/profile", isLoggedIn, async function (req, res, next) {
     .findOne({ username: req.session.passport.user })
     .populate("posts");
 
-    console.log(user);
-    
-
-  res.render("profile", { user, nav: true });
+  res.render("profile", { user: user, nav: true });
 });
 
 router.get("/feed", isLoggedIn, async function (req, res, next) {
@@ -164,6 +161,10 @@ router.post("/update", isLoggedIn, async function (req, res, next) {
 
   await user.save();
   res.redirect("/profile");
+});
+
+router.post("/like/:postid",isLoggedIn,function(req,res){
+
 });
 
 router.post("/post", isLoggedIn, async function (req, res, next) {

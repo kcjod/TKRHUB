@@ -54,7 +54,7 @@
     <% if(!isfollowing){ %>
     <a href="/follow/<%= user.username %>"
       ><button
-        class="mt-2 bg-yellow-300 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded-lg"
+        class="mt-2 bg-[#84CC16] hover:bg-white hover:text-[#84CC16] text-white font-bold py-2 px-4 rounded-lg"
       >
         Follow
       </button></a
@@ -234,13 +234,13 @@
       </div>
     </div>
   </div>
-
-  <div class="h-[2px] rounded-xl bg-yellow-400 mt-32"></div>
+  <% if(user.posts.length>0){ %>
+  <div class="h-[2px] rounded-xl bg-[#84CC16] mt-32"></div>
 
   <div class="flex justify-center items-center mt-3 text-lg font-semibold">
     <h1 class="">
         Posts
-      <div class="h-[3px] rounded-lg w-full bg-yellow-400"></div>
+      <div class="h-[3px] rounded-lg w-full bg-[#84CC16]"></div>
     </h1>
   </div>
 
@@ -296,6 +296,8 @@
 
     <% }) %>
   </div>
+  <% } %>
+    
 </div>
 <script>
   //readmore and readless
