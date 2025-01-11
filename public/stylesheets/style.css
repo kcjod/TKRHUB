@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+html {
+  scroll-behavior: smooth;
+}
 
 body{
-  font-family: ubuntu;
+  font-family: 'Roboto', sans-serif;
 }
 .alert {
   position: relative;
@@ -46,6 +48,23 @@ body{
 .shadow-blend-border {
   box-shadow: 0 0 20px 40px rgba(0, 245, 0, 1); /* Adjust the color and spread as needed */
 }
+
+/* Improved button styling */
+button {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+button:hover {
+  background-color: #26F500;
+  transform: scale(1.05);
+}
+
+/* Improved card hover effects */
+.card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+}
+
+
 
 @media (max-width: 1024px) {
   .sc{

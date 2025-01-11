@@ -1,157 +1,193 @@
 <%- include('./partials/header') %>
 
-  <div class="w-[80%] relative top-16 flex flex-col justify-center items-center mx-auto">
-    <div>
-      <h1 class="text-white text-center md:text-2xl lg:text-2xl xl:text-3xl text-[20px]">
-        Have you ever gone through an interview?
-      </h1>
+<div
+  class="w-[80%] relative top-16 flex flex-col justify-center items-center mx-auto"
+>
+  <div>
+    <h1
+      class="text-white text-center md:text-2xl lg:text-2xl xl:text-3xl text-[20px]"
+    >
+      Have you ever gone through an interview?
+    </h1>
+  </div>
+  <div class="flex items-center gap-2 w-full justify-center mt-2">
+    <img
+      src="../images/<%= user.profileimg %>"
+      alt=""
+      class="h-[40px] rounded-full border-2 border-zinc-200 lg:block"
+    />
+    <div
+      class="w-[100%] h-[40px] bg-gray-100 my-2 px-8 py-2 rounded-3xl md:w-[50%] lg:w-[35%] cursor-pointer"
+      id="dropdownButton"
+    >
+      Start a post
     </div>
-    <div class="flex items-center gap-2 w-full justify-center mt-2">
-      <img src="../images/<%= user.profileimg %>" alt=""
-        class="h-[40px] rounded-full border-2 border-zinc-200 lg:block" />
-      <div class="w-[100%] h-[40px] bg-gray-100 my-2 px-8 py-2 rounded-3xl md:w-[50%] lg:w-[35%] cursor-pointer"
-        id="dropdownButton">
-        Start a post
+
+    <div
+      class="hidden fixed inset-0 bg-black opacity-50 z-50"
+      id="modalBackdrop"
+    ></div>
+
+    <!-- Dropdown form -->
+    <div
+      class="hidden bg-lime-500 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 rounded-md shadow-md z-50"
+      id="dropdownForm"
+    >
+      <form class="flex flex-col items-center" action="/post" method="post">
+        <textarea
+          class="w-[80vw] h-[60vh] resize-none border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-lime-300"
+          name="content"
+          placeholder="Share your experience"
+        ></textarea>
+        <input
+          type="submit"
+          value="Post"
+          class="cursor-pointer w-[30vw] mt-2 bg-slate-800 md:w-[15vw] lg:w-[5vw] hover:bg-white hover:text-slate-800 duration-200 shadow-xl mt-5 text-white font-bold py-2 px-4 rounded"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Feed cards -->
+<div
+  id="feed-container"
+  class="w-[90%] relative top-16 flex flex-col gap-5 justify-center items-center mx-auto mt-2 lg:w-[80%]"
+>
+  <% posts.forEach(function(post){ %>
+  <div
+    class="card border-b-4 border-lime-500 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]"
+  >
+    <div class="dets flex gap-3 relative items-center mb-3">
+      <a href="/publicprofile/<%= post.author.username %>"
+        ><img
+          src="../images/<%= post.author.profileimg %>"
+          alt=""
+          class="h-[40px] border rounded-full"
+      /></a>
+      <a href="/publicprofile/<%= post.author.username %>">
+        <div class="font-semibold"><%= post.author.username %></div>
+      </a>
+      <div class="text-lime-500 ml-2">
+        <%= post.author.followers.length %> followers
       </div>
 
-      <div class="hidden fixed inset-0 bg-black opacity-50 z-50" id="modalBackdrop"></div>
-
-      <!-- Dropdown form -->
+      <% if(post.author && user && post.author._id && user._id &&
+      post.author._id.toString() === user._id.toString()) { %>
+      <i
+        class="delete fa-regular fa-trash-can fa-lg absolute cursor-pointer right-0"
+        data-id="<%= post._id %>"
+      ></i>
+      <% } %>
+    </div>
+    <div
+      class="hero flex flex-col items-start justify-center mt-2 overflow-hidden"
+    >
+      <div class="content text-start break-words" id="content">
+        <!-- Initial content with limited characters -->
+        <pre id="content" class="whitespace-pre-wrap">
+<%= post.Truncatedcontent %></pre
+        >
+        <!-- Full content (hidden by default) -->
+        <pre id="full-content" class="hidden whitespace-pre-wrap">
+<%= post.content %></pre
+        >
+      </div>
+      <span
+        id="read-more-btn"
+        class="cursor-pointer mx-auto text-lime-500 hover:underline"
+      >
+        Read More
+      </span>
+      <span
+        id="read-less-btn"
+        class="cursor-pointer mx-auto hidden text-lime-500 hover:underline"
+      >
+        Read Less
+      </span>
       <div
-        class="hidden bg-lime-500 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 rounded-md shadow-md z-50"
-        id="dropdownForm">
-        <form class="flex flex-col items-center" action="/post" method="post">
-          <textarea
-            class="w-[80vw] h-[60vh] resize-none border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-lime-300"
-            name="content" placeholder="Share your experience"></textarea>
-          <input type="submit" value="Post"
-            class="cursor-pointer w-[30vw] mt-2 bg-slate-800 md:w-[15vw] lg:w-[5vw] hover:bg-white hover:text-slate-800 duration-200 shadow-xl mt-5 text-white font-bold py-2 px-4 rounded" />
-        </form>
+        class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2"
+      >
+        <!-- icons -->
+        <div class="cursor-pointer">
+          <i class="ri-thumb-up-line"></i>
+          <span class="text-zinc-600"> <%= post.likes.length %> </span>
+        </div>
+        <div class="cursor-pointer">
+          <i class="ri-chat-3-line"></i>
+          <span class="text-zinc-600"> <%= post.comments.length %> </span>
+        </div>
+        <div class="cursor-pointer">
+          <i class="ri-share-line"></i>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Feed cards -->
-  <div id="feed-container"
-    class="w-[90%] relative top-16 flex flex-col gap-5 justify-center items-center mx-auto mt-2 lg:w-[80%]">
-    <% posts.forEach(function(post){ %>
-      <div class="card border-b-4 border-lime-500 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]">
-        <div class="dets flex gap-3 relative items-center mb-3">
-          <a href="/publicprofile/<%= post.author.username %>"><img src="../images/<%= post.author.profileimg %>" alt="" class="h-[40px] border rounded-full" /></a>
-          <a href="/publicprofile/<%= post.author.username %>">
-            <div class="font-semibold">
-              <%= post.author.username %>
-            </div>
-          </a>
-          <div class="text-lime-500 ml-2">
-            <%= post.author.followers.length %> followers
-          </div>
+  <% }) %>
+</div>
+<script>
+  // read more and less functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const readMoreBtns = document.querySelectorAll("#read-more-btn");
+    const readLessBtns = document.querySelectorAll("#read-less-btn");
+    const contents = document.querySelectorAll("#content");
+    const fullContents = document.querySelectorAll("#full-content");
 
-          <% if(post.author && user && post.author._id && user._id && post.author._id.toString() === user._id.toString()) { %>
-            <i class="delete fa-regular fa-trash-can fa-lg absolute cursor-pointer right-0"></i>
-          <% } %>
-        
-        </div>
-        <div class="hero flex flex-col items-start justify-center mt-2 overflow-hidden">
-          <div class="content text-start break-words" id="content">
-            <!-- Initial content with limited characters -->
-            <pre id="content" class="whitespace-pre-wrap"><%= post.Truncatedcontent %></pre>
-            <!-- Full content (hidden by default) -->
-            <pre id="full-content" class="hidden whitespace-pre-wrap"><%= post.content %></pre>
-          </div>
-          <span id="read-more-btn" class="cursor-pointer  mx-auto text-lime-500 hover:underline">
-            Read More
-          </span>
-          <span id="read-less-btn" class="cursor-pointer mx-auto hidden text-lime-500 hover:underline">
-            Read Less
-          </span>
-          <div class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2">
-            <!-- icons -->
-            <div class="cursor-pointer">
-              <i class="ri-thumb-up-line"></i>
-              <span class="text-zinc-600">
-                <%= post.likes.length %>
-              </span>
-            </div>
-            <div class="cursor-pointer">
-              <i class="ri-chat-3-line"></i>
-              <span class="text-zinc-600">
-                <%= post.comments.length %>
-              </span>
-            </div>
-            <div class="cursor-pointer">
-              <i class="ri-share-line"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <% }) %>
-  </div>
-  <script>
-
-    // read more and less functionality
-    document.addEventListener("DOMContentLoaded", function () {
-      const readMoreBtns = document.querySelectorAll("#read-more-btn");
-      const readLessBtns = document.querySelectorAll("#read-less-btn");
-      const contents = document.querySelectorAll("#content");
-      const fullContents = document.querySelectorAll("#full-content");
-
-      readMoreBtns.forEach((readMoreBtn, index) => {
-        readMoreBtn.addEventListener("click", function () {
-          contents[index].innerText = fullContents[index].innerText;
-          readMoreBtn.classList.add("hidden");
-          readLessBtns[index].classList.remove("hidden");
-        });
-      });
-
-      readLessBtns.forEach((readLessBtn, index) => {
-        readLessBtn.addEventListener("click", function () {
-          console.log('readless');
-          contents[index].innerText = fullContents[index].innerText.slice(0, 150) + "...";
-          readMoreBtns[index].classList.remove("hidden");
-          readLessBtn.classList.add("hidden");
-        });
+    readMoreBtns.forEach((readMoreBtn, index) => {
+      readMoreBtn.addEventListener("click", function () {
+        contents[index].innerText = fullContents[index].innerText;
+        readMoreBtn.classList.add("hidden");
+        readLessBtns[index].classList.remove("hidden");
       });
     });
 
-
-    // Get the button, modal backdrop, and dropdown form
-    var button = document.getElementById("dropdownButton");
-    var modalBackdrop = document.getElementById("modalBackdrop");
-    var dropdownForm = document.getElementById("dropdownForm");
-
-    // Show the modal and backdrop when the button is clicked
-    button.addEventListener("click", function () {
-      modalBackdrop.classList.remove("hidden");
-      dropdownForm.classList.remove("hidden");
+    readLessBtns.forEach((readLessBtn, index) => {
+      readLessBtn.addEventListener("click", function () {
+        console.log("readless");
+        contents[index].innerText =
+          fullContents[index].innerText.slice(0, 150) + "...";
+        readMoreBtns[index].classList.remove("hidden");
+        readLessBtn.classList.add("hidden");
+      });
     });
+  });
 
-    // Hide the modal and backdrop when clicking outside the form
-    modalBackdrop.addEventListener("click", function () {
-      modalBackdrop.classList.add("hidden");
-      dropdownForm.classList.add("hidden");
-    });
+  // Get the button, modal backdrop, and dropdown form
+  var button = document.getElementById("dropdownButton");
+  var modalBackdrop = document.getElementById("modalBackdrop");
+  var dropdownForm = document.getElementById("dropdownForm");
 
-    const menuIcon = document.getElementById('menu-icon');
-    const dropdownMenu = document.getElementById('dropdown-menu');
+  // Show the modal and backdrop when the button is clicked
+  button.addEventListener("click", function () {
+    modalBackdrop.classList.remove("hidden");
+    dropdownForm.classList.remove("hidden");
+  });
 
-    menuIcon.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the default behavior of the <i> element
-        dropdownMenu.classList.toggle('hidden');
-    });
+  // Hide the modal and backdrop when clicking outside the form
+  modalBackdrop.addEventListener("click", function () {
+    modalBackdrop.classList.add("hidden");
+    dropdownForm.classList.add("hidden");
+  });
 
-    const input = document.querySelector("#Searchinp");
-    let clutter = "";
-    input.addEventListener("keyup", function () {
-        console.log(input.value, '.')
-        if (input.value !== "") {
-            axios.get(`/username/${input.value}`)
-                .then((data) => {
-                    if (data.data.length > 0) {
-                        clutter = "";
-                        data.data.forEach(function (e) {
-                            clutter += `
+  const menuIcon = document.getElementById("menu-icon");
+  const dropdownMenu = document.getElementById("dropdown-menu");
+
+  menuIcon.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default behavior of the <i> element
+    dropdownMenu.classList.toggle("hidden");
+  });
+
+  const input = document.querySelector("#Searchinp");
+  let clutter = "";
+  input.addEventListener("keyup", function () {
+    console.log(input.value, ".");
+    if (input.value !== "") {
+      axios.get(`/username/${input.value}`).then((data) => {
+        if (data.data.length > 0) {
+          clutter = "";
+          data.data.forEach(function (e) {
+            clutter += `
                     <div class="">
                         <div class="w-full flex bg-blue-50 overflow-hidden gap-5 items-center px-5 py-2 rounded-xl" id="elem">
                             <a href="/publicprofile/${e.username}"><div class="overflow-hidden">
@@ -162,57 +198,46 @@
                             </div></a>
                         </div>
                     </div>
-                    `
-                        })
-                    }
-                    else {
-                        document.querySelector(".searchvals").innerHTML = ""
-                    }
-                    document.querySelector(".searchvals").innerHTML = clutter;
-                })
+                    `;
+          });
+        } else {
+          document.querySelector(".searchvals").innerHTML = "";
         }
-        else {
-            document.querySelector(".searchvals").innerHTML = ""
-        }
-    });
-
-
-    // delete dropdown
-    const deleteBtns = document.querySelectorAll('.delete');
-    const deleteContainer = document.querySelector('#deleteContainer');
-    const cancelButton = document.querySelector('#deleteContainer .btns button:first-child');
-
-    deleteBtns.forEach((deleteBtn) => {
-        deleteBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            deleteContainer.classList.remove('hidden');
-            deleteContainer.classList.add('flex');
-        });
-    })
-
-    document.addEventListener('click', (event) => {
-        const clickedElement = event.target;
-        console.log(event.target);
-        
-        const isDeleteContainer = clickedElement === deleteContainer;
-        const isCancelButton = clickedElement === cancelButton;
-
-        if (!isDeleteContainer || !isCancelButton) {
-            deleteContainer.classList.remove('flex');
-            deleteContainer.classList.add('hidden');
-        }
-    });
-
-    cancelButton.addEventListener('click', () => {
-        deleteContainer.classList.add('hidden');
-    });
-
-    function deletePost(id) {
-        alert(id);
-        console.log('first')
+        document.querySelector(".searchvals").innerHTML = clutter;
+      });
+    } else {
+      document.querySelector(".searchvals").innerHTML = "";
     }
+  });
 
-    
-  </script>
+  const deleteButtons = document.querySelectorAll(".delete");
 
-  <%- include('./partials/footer') %>
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      const postId = button.getAttribute("data-id");
+      if (confirm("Are you sure you want to delete this post?")) {
+        try {
+          const response = await fetch(`/post/${postId}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (response.ok) {
+            const postCard = button.closest(".card");
+            postCard.remove();
+          } else {
+            const { error } = await response.json();
+            alert(error || "Failed to delete the post");
+          }
+        } catch (err) {
+          alert("An error occurred while deleting the post");
+        }
+      }
+    });
+  });
+
+</script>
+
+<%- include('./partials/footer') %>
