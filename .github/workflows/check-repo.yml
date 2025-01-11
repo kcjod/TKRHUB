@@ -1,6 +1,7 @@
 name: check repo
 on: push
-  branches: ["main"]
+  branches:
+  - main
   workflow_dispatch:
 
 jobs:
