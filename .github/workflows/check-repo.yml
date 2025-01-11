@@ -7,7 +7,7 @@ on:
 
 jobs:
   checkout_repo:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
