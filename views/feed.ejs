@@ -1,12 +1,8 @@
 <%- include('./partials/header') %>
 
-<div
-  class="w-[80%] relative top-16 flex flex-col justify-center items-center mx-auto"
->
+<div class="w-[80%] relative top-16 flex flex-col justify-center items-center mx-auto">
   <div>
-    <h1
-      class="text-white text-center md:text-2xl lg:text-2xl xl:text-3xl text-[20px]"
-    >
+    <h1 class="text-white text-center md:text-2xl lg:text-2xl xl:text-3xl text-[20px]">
       Have you ever gone through an interview?
     </h1>
   </div>
@@ -23,19 +19,29 @@
       Start a post
     </div>
 
-    <div
-      class="hidden fixed inset-0 bg-black opacity-50 z-50"
-      id="modalBackdrop"
-    ></div>
+    <!-- Modal Backdrop -->
+    <div class="hidden fixed inset-0 bg-black opacity-50 z-50" id="modalBackdrop"></div>
 
-    <!-- Dropdown form -->
+    <!-- Modal Form -->
     <div
       class="hidden bg-lime-500 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 rounded-md shadow-md z-50"
       id="dropdownForm"
     >
       <form class="flex flex-col items-center" action="/post" method="post">
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter the title"
+          class="w-[80vw] md:w-[50vw] h-[7vh] resize-none border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-lime-300 mb-2"
+        />
+        <input
+          type="text"
+          name="company"
+          placeholder="Enter the company (optional)"
+          class="w-[80vw] md:w-[50vw] h-[7vh] resize-none border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-lime-300 mb-2"
+        />
         <textarea
-          class="w-[80vw] h-[60vh] resize-none border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-lime-300"
+          class="w-[80vw] md:w-[50vw] h-[35vh] resize-none border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-lime-300"
           name="content"
           placeholder="Share your experience"
         ></textarea>
@@ -50,23 +56,19 @@
 </div>
 
 <!-- Feed cards -->
-<div
-  id="feed-container"
-  class="w-[90%] relative top-16 flex flex-col gap-5 justify-center items-center mx-auto mt-2 lg:w-[80%]"
->
+<div class="w-[90%] relative top-16 flex flex-col gap-5 justify-center items-center mx-auto mt-2 lg:w-[80%]">
   <% posts.forEach(function(post){ %>
-  <div
-    class="card border-b-4 border-lime-500 w-[100%] text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]"
-  >
+  <div class="card border-b-4 border-lime-500 w-full text-sm md:text-base rounded-xl bg-zinc-100 shadow-lg flex flex-col p-4 my-2 md:w-[100%]">
     <div class="dets flex gap-3 relative items-center mb-3">
-      <a href="/publicprofile/<%= post.author.username %>"
-        ><img
+      <a href="/publicprofile/<%= post.author.username %>">
+        <img
           src="../images/<%= post.author.profileimg %>"
           alt=""
           class="h-[40px] border rounded-full"
-      /></a>
+        />
+      </a>
       <a href="/publicprofile/<%= post.author.username %>">
-        <div class="font-semibold"><%= post.author.username %></div>
+        <div class="font-semibold">@<%= post.author.username %></div>
       </a>
       <div class="text-lime-500 ml-2">
         <%= post.author.followers.length %> followers
@@ -80,35 +82,26 @@
       ></i>
       <% } %>
     </div>
-    <div
-      class="hero flex flex-col items-start justify-center mt-2 overflow-hidden"
-    >
-      <div class="content text-start break-words" id="content">
-        <!-- Initial content with limited characters -->
-        <pre id="content" class="whitespace-pre-wrap">
-<%= post.Truncatedcontent %></pre
-        >
-        <!-- Full content (hidden by default) -->
-        <pre id="full-content" class="hidden whitespace-pre-wrap">
-<%= post.content %></pre
-        >
+
+    <!-- Post Content -->
+    <div class="hero flex flex-col items-start justify-center mt-2 overflow-hidden">
+      <!-- Display title and company -->
+      <div class="title font-semibold text-lg text-start mb-2">
+        <%= post.title %>
       </div>
-      <span
-        id="read-more-btn"
-        class="cursor-pointer mx-auto text-lime-500 hover:underline"
-      >
-        Read More
-      </span>
-      <span
-        id="read-less-btn"
-        class="cursor-pointer mx-auto hidden text-lime-500 hover:underline"
-      >
-        Read Less
-      </span>
-      <div
-        class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2"
-      >
-        <!-- icons -->
+      <div class="company text-sm text-gray-600 mb-2">
+        <%= post.company || "No company mentioned" %>
+      </div>
+
+      <!-- Full Content Displayed -->
+      <div class="content ml-[-40px] break-words">
+        <div id="full-content" class="whitespace-pre-wrap">
+          <%= post.content %>
+        </div>
+      </div>
+
+      <!-- Buttons (likes, comments, shares) -->
+      <div class="btns flex h-[20px] mx-auto justify-center items-center gap-5 my-2">
         <div class="cursor-pointer">
           <i class="ri-thumb-up-line"></i>
           <span class="text-zinc-600"> <%= post.likes.length %> </span>
@@ -123,121 +116,54 @@
       </div>
     </div>
   </div>
-
   <% }) %>
 </div>
+
 <script>
-  // read more and less functionality
   document.addEventListener("DOMContentLoaded", function () {
-    const readMoreBtns = document.querySelectorAll("#read-more-btn");
-    const readLessBtns = document.querySelectorAll("#read-less-btn");
-    const contents = document.querySelectorAll("#content");
-    const fullContents = document.querySelectorAll("#full-content");
+    // Modal logic
+    const button = document.getElementById("dropdownButton");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const dropdownForm = document.getElementById("dropdownForm");
 
-    readMoreBtns.forEach((readMoreBtn, index) => {
-      readMoreBtn.addEventListener("click", function () {
-        contents[index].innerText = fullContents[index].innerText;
-        readMoreBtn.classList.add("hidden");
-        readLessBtns[index].classList.remove("hidden");
-      });
-    });
+    const toggleModal = () => {
+      modalBackdrop.classList.toggle("hidden");
+      dropdownForm.classList.toggle("hidden");
+    };
 
-    readLessBtns.forEach((readLessBtn, index) => {
-      readLessBtn.addEventListener("click", function () {
-        console.log("readless");
-        contents[index].innerText =
-          fullContents[index].innerText.slice(0, 150) + "...";
-        readMoreBtns[index].classList.remove("hidden");
-        readLessBtn.classList.add("hidden");
-      });
-    });
-  });
-
-  // Get the button, modal backdrop, and dropdown form
-  var button = document.getElementById("dropdownButton");
-  var modalBackdrop = document.getElementById("modalBackdrop");
-  var dropdownForm = document.getElementById("dropdownForm");
-
-  // Show the modal and backdrop when the button is clicked
-  button.addEventListener("click", function () {
-    modalBackdrop.classList.remove("hidden");
-    dropdownForm.classList.remove("hidden");
-  });
-
-  // Hide the modal and backdrop when clicking outside the form
-  modalBackdrop.addEventListener("click", function () {
-    modalBackdrop.classList.add("hidden");
-    dropdownForm.classList.add("hidden");
-  });
-
-  const menuIcon = document.getElementById("menu-icon");
-  const dropdownMenu = document.getElementById("dropdown-menu");
-
-  menuIcon.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent the default behavior of the <i> element
-    dropdownMenu.classList.toggle("hidden");
-  });
-
-  const input = document.querySelector("#Searchinp");
-  let clutter = "";
-  input.addEventListener("keyup", function () {
-    console.log(input.value, ".");
-    if (input.value !== "") {
-      axios.get(`/username/${input.value}`).then((data) => {
-        if (data.data.length > 0) {
-          clutter = "";
-          data.data.forEach(function (e) {
-            clutter += `
-                    <div class="">
-                        <div class="w-full flex bg-blue-50 overflow-hidden gap-5 items-center px-5 py-2 rounded-xl" id="elem">
-                            <a href="/publicprofile/${e.username}"><div class="overflow-hidden">
-                                <img class="w-[30px] object-cover rounded-full cursor-pointer"  src="../images/${e.profileimg}" alt="">    
-                            </div></a>
-                            <a href="/publicprofile/${e.username}"><div class="cursor-pointer text-semibold">
-                                <span>${e.username}</span>
-                            </div></a>
-                        </div>
-                    </div>
-                    `;
-          });
-        } else {
-          document.querySelector(".searchvals").innerHTML = "";
-        }
-        document.querySelector(".searchvals").innerHTML = clutter;
-      });
-    } else {
-      document.querySelector(".searchvals").innerHTML = "";
-    }
-  });
-
-  const deleteButtons = document.querySelectorAll(".delete");
-
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", async (e) => {
-      const postId = button.getAttribute("data-id");
-      if (confirm("Are you sure you want to delete this post?")) {
-        try {
-          const response = await fetch(`/post/${postId}`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-
-          if (response.ok) {
-            const postCard = button.closest(".card");
-            postCard.remove();
-          } else {
-            const { error } = await response.json();
-            alert(error || "Failed to delete the post");
-          }
-        } catch (err) {
-          alert("An error occurred while deleting the post");
-        }
+    button.addEventListener("click", toggleModal);
+    modalBackdrop.addEventListener("click", toggleModal);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        toggleModal();
       }
     });
-  });
 
+    // Post Deletion functionality
+    document.querySelectorAll(".delete").forEach((button) => {
+      button.addEventListener("click", async (e) => {
+        const postId = button.getAttribute("data-id");
+        if (confirm("Are you sure you want to delete this post?")) {
+          try {
+            const response = await fetch(`/post/${postId}`, {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" },
+            });
+
+            if (response.ok) {
+              const postCard = button.closest(".card");
+              postCard.remove();
+            } else {
+              const { error } = await response.json();
+              alert(error || "Failed to delete the post");
+            }
+          } catch (err) {
+            alert("An error occurred while deleting the post");
+          }
+        }
+      });
+    });
+  });
 </script>
 
 <%- include('./partials/footer') %>

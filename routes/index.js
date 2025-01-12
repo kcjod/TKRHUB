@@ -4,6 +4,7 @@ const userModel = require("./users");
 const postModel = require("./posts");
 const localStrategy = require("passport-local");
 const passport = require("passport");
+// const { formatDistanceToNow, parseISO } = require('date-fns');
 
 passport.use(new localStrategy(userModel.authenticate()));
 
@@ -55,8 +56,8 @@ router.get("/feed", isLoggedIn, async function (req, res, next) {
 });
 
 router.get("/publicprofile/:username", async function (req, res) {
-  if(req.isAuthenticated()){
-    if(req.params.username === req.session.passport.user){
+  if (req.isAuthenticated()) {
+    if (req.params.username === req.session.passport.user) {
       return res.redirect("/profile");
     }
   }
@@ -163,9 +164,7 @@ router.post("/update", isLoggedIn, async function (req, res, next) {
   res.redirect("/profile");
 });
 
-router.post("/like/:postid",isLoggedIn,function(req,res){
-
-});
+router.post("/like/:postid", isLoggedIn, function (req, res) {});
 
 router.post("/post", isLoggedIn, async function (req, res, next) {
   try {
@@ -173,15 +172,21 @@ router.post("/post", isLoggedIn, async function (req, res, next) {
       username: req.session.passport.user,
     });
 
-    const limitedContent = req.body.content.trim();
+    const { title, company, content } = req.body;
+
+    const limitedContent = content.trim();
+
+    // Create a new post with the title, company (optional), and content
     const post = new postModel({
-      Truncatedcontent: limitedContent.slice(0, 150),
-      content: req.body.content.slice().trim(),
-      author: user._id,
+      title: title.trim(), // Add title to the post
+      company: company ? company.trim() : null, // Use company if provided, otherwise set to null
+      content: content.slice().trim(), // Full content
+      author: user._id, // Reference to the author
     });
 
     await post.save();
 
+    // Add the post to the user's list of posts
     user.posts.push(post._id);
     await user.save();
 

@@ -13,7 +13,6 @@ const flash = require("connect-flash");
 
 const app = express();
 
-// Set EJS as the view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -36,6 +35,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+app.listen(3000, ()=>{
+  console.log("Server started on port 3000")
+})
 
 module.exports = app;

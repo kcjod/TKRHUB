@@ -4,41 +4,57 @@
   <!-- Page 1 -->
   <div id="page1" class="w-[85%] mx-auto my-0 h-screen relative">
     <% if (!user) { %>
-    <nav id="nav" class="h-[12vh] flex justify-between items-center px-8 bg-gradient-to-r from-[#24E400] to-[#26F500] text-white shadow-xl rounded-lg">
+    <nav
+      id="nav"
+      class="h-[12vh] flex justify-between items-center px-8 bg-gradient-to-r from-[#24E400] to-[#26F500] text-white shadow-xl rounded-lg"
+    >
       <div class="text-3xl font-bold">
         <span class="text-white">TKR</span> Interview Bits
       </div>
       <div class="flex gap-6">
         <a href="/login">
-          <button class="px-6 py-2 bg-[#24E400] rounded-md hover:bg-[#26F500] transition-all duration-200">
+          <button
+            class="px-6 py-2 bg-[#24E400] rounded-md hover:bg-[#26F500] transition-all duration-200"
+          >
             Login
           </button>
         </a>
         <a href="/signup">
-          <button class="px-6 py-2 bg-slate-100 text-[#24E400] rounded-md hover:bg-white transition-all duration-200">
+          <button
+            class="px-6 py-2 bg-slate-100 text-[#24E400] rounded-md hover:bg-white transition-all duration-200"
+          >
             Register
           </button>
         </a>
       </div>
     </nav>
     <% } else { %>
-    <nav id="nav" class="h-[12vh] flex justify-between items-center px-8 bg-gradient-to-r from-[#24E400] to-[#26F500] text-white shadow-xl rounded-lg">
+    <nav
+      id="nav"
+      class="h-[12vh] flex justify-between items-center px-8 bg-gradient-to-r from-[#24E400] to-[#26F500] text-white shadow-xl rounded-lg"
+    >
       <div class="text-3xl font-bold">
         <span class="text-white">TKR</span> Interview Bits
       </div>
       <div class="flex gap-6">
         <a href="/feed">
-          <button class="px-6 py-2 bg-[#24E400] rounded-md hover:bg-[#26F500] transition-all duration-200">
+          <button
+            class="px-6 py-2 bg-[#24E400] rounded-md hover:bg-[#26F500] transition-all duration-200"
+          >
             Feed
           </button>
         </a>
         <a href="/profile">
-          <button class="px-6 py-2 bg-[#24E400] rounded-md hover:bg-[#26F500] transition-all duration-200">
+          <button
+            class="px-6 py-2 bg-[#24E400] rounded-md hover:bg-[#26F500] transition-all duration-200"
+          >
             Profile
           </button>
         </a>
         <a href="/logout">
-          <button class="px-6 py-2 bg-[#26F500] rounded-md hover:bg-[#24E400] transition-all duration-200">
+          <button
+            class="px-6 py-2 bg-[#26F500] rounded-md hover:bg-[#24E400] transition-all duration-200"
+          >
             Logout
           </button>
         </a>
@@ -46,16 +62,33 @@
     </nav>
     <% } %>
 
-    <div id="contentp1" class="w-full min-h-[82vh] md:flex gap-4 items-center px-4 lg:px-0">
-      <div id="leftp1" class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh] p-8 flex flex-col gap-4 justify-center items-center">
+    <div
+      id="contentp1"
+      class="w-full min-h-[82vh] md:flex gap-4 items-center px-4 lg:px-0"
+    >
+      <div
+        id="leftp1"
+        class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh] p-8 flex flex-col gap-4 justify-center items-center"
+      >
         <h1 class="text-[5vw] text-[#24E400] font-semibold">Welcome to TIB</h1>
-        <h2 class="text-[2.5vw] text-slate-200 font-medium">Empowering Careers, One Story at a Time</h2>
+        <h2 class="text-[2.5vw] text-slate-200 font-medium">
+          Empowering Careers, One Story at a Time
+        </h2>
         <p class="text-[1.8vw] text-white mt-4">
-          Explore real interview experiences from professionals across various industries. Learn from their stories, prepare better, and succeed in your career journey.
+          Explore real interview experiences from professionals across various
+          industries. Learn from their stories, prepare better, and succeed in
+          your career journey.
         </p>
       </div>
-      <div id="rightp1" class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh] flex justify-center items-center">
-        <img src="/images/hero.png" alt="Hero Image" class="rounded-full w-[70%] shadow-xl transition-transform transform hover:scale-110 duration-300"/>
+      <div
+        id="rightp1"
+        class="lg:w-[50%] md:w-[50%] w-[100%] h-[70vh] flex justify-center items-center"
+      >
+        <img
+          src="/images/hero.png"
+          alt="Hero Image"
+          class="rounded-full w-[70%] shadow-xl transition-transform transform hover:scale-110 duration-300"
+        />
       </div>
     </div>
     <div class="h-[1px] w-full bg-white absolute bottom-0"></div>
@@ -67,28 +100,64 @@
       <h1 class="text-3xl text-lime-500 font-semibold">Benefits</h1>
     </div>
     <div class="w-full flex flex-wrap justify-center gap-8 py-10 px-4 lg:px-0">
-      <div class="w-[100%] sm:w-[45%] md:w-[30%] bg-slate-900 opacity-90 hover:opacity-100 rounded-xl p-6 shadow-xl hover:scale-105 transform transition-all hover:shadow-2xl h-[400px]">
+      <div
+        class="w-[100%] sm:w-[45%] md:w-[30%] bg-slate-900 opacity-90 hover:opacity-100 rounded-xl p-6 shadow-xl hover:scale-105 transform transition-all hover:shadow-2xl h-[400px]"
+      >
         <div class="h-[150px] rounded-md overflow-hidden relative">
-          <img id="p2img" src="../images/2-img1.jpg" alt="Benefit Image" class="h-full w-full rounded-md object-cover shadow-lg"/>
+          <img
+            id="p2img"
+            src="../images/2-img1.jpg"
+            alt="Benefit Image"
+            class="h-full w-full rounded-md object-cover shadow-lg"
+          />
         </div>
-        <h3 class="text-white text-2xl font-semibold text-center mt-6">Comprehensive Interview Preparation</h3>
-        <p class="text-white text-md my-2 text-center">Gain insights into the questions asked and the evaluation criteria used by top companies.</p>
+        <h3 class="text-white text-2xl font-semibold text-center mt-6">
+          Comprehensive Interview Preparation
+        </h3>
+        <p class="text-white text-md my-2 text-center">
+          Gain insights into the questions asked and the evaluation criteria
+          used by top companies.
+        </p>
       </div>
 
-      <div class="w-[100%] sm:w-[45%] md:w-[30%] bg-slate-900 opacity-90 hover:opacity-100 rounded-xl p-6 shadow-xl hover:scale-105 transform transition-all hover:shadow-2xl h-[400px]">
+      <div
+        class="w-[100%] sm:w-[45%] md:w-[30%] bg-slate-900 opacity-90 hover:opacity-100 rounded-xl p-6 shadow-xl hover:scale-105 transform transition-all hover:shadow-2xl h-[400px]"
+      >
         <div class="h-[150px] rounded-md overflow-hidden relative">
-          <img id="p2img" src="../images/p2-img2.png" alt="Benefit Image" class="h-full w-full rounded-md object-cover shadow-lg"/>
+          <img
+            id="p2img"
+            src="../images/p2-img2.png"
+            alt="Benefit Image"
+            class="h-full w-full rounded-md object-cover shadow-lg"
+          />
         </div>
-        <h3 class="text-white text-2xl font-semibold mt-6 text-center">Real Stories from Real Professionals</h3>
-        <p class="text-white text-md my-2 text-center">Learn from professionals who have successfully navigated their interview processes.</p>
+        <h3 class="text-white text-2xl font-semibold mt-6 text-center">
+          Real Stories from Real Professionals
+        </h3>
+        <p class="text-white text-md my-2 text-center">
+          Learn from professionals who have successfully navigated their
+          interview processes.
+        </p>
       </div>
 
-      <div class="w-[100%] sm:w-[45%] md:w-[30%] bg-slate-900 opacity-90 hover:opacity-100 rounded-xl p-6 shadow-xl hover:scale-105 transform transition-all hover:shadow-2xl h-[400px]">
+      <div
+        class="w-[100%] sm:w-[45%] md:w-[30%] bg-slate-900 opacity-90 hover:opacity-100 rounded-xl p-6 shadow-xl hover:scale-105 transform transition-all hover:shadow-2xl h-[400px]"
+      >
         <div class="h-[150px] rounded-md overflow-hidden relative">
-          <img id="p2img" src="../images/p2-img3.png" alt="Benefit Image" class="h-full w-full rounded-md object-cover shadow-lg"/>
+          <img
+            id="p2img"
+            src="../images/p2-img3.png"
+            alt="Benefit Image"
+            class="h-full w-full rounded-md object-cover shadow-lg"
+          />
         </div>
-        <h3 class="text-white text-2xl font-semibold mt-6 text-center">Stay Ahead of the Curve</h3>
-        <p class="text-white text-md my-2 text-center">Keep up with the latest trends in interview techniques and industry expectations.</p>
+        <h3 class="text-white text-2xl font-semibold mt-6 text-center">
+          Stay Ahead of the Curve
+        </h3>
+        <p class="text-white text-md my-2 text-center">
+          Keep up with the latest trends in interview techniques and industry
+          expectations.
+        </p>
       </div>
     </div>
 
@@ -100,20 +169,44 @@
     <div class="flex justify-center my-10">
       <h1 class="text-3xl text-lime-500 font-semibold">Testimonials</h1>
     </div>
-    <div id="testcards" class="h-[80%] flex flex-wrap justify-center items-center space-x-10">
-      <div class="w-[300px] h-[300px] bg-white p-5 shadow-xl rounded-lg transform transition-all hover:scale-105">
-        <h1 class="text-xl text-center font-semibold">A Game Changer for My Career</h1>
-        <p class="text-justify mt-2">TKR Interview Bits helped me prepare confidently for my interviews.I landed my dream job!</p>
+    <div
+      id="testcards"
+      class="h-[80%] flex flex-wrap justify-center items-center space-x-10"
+    >
+      <div
+        class="w-[300px] h-[300px] bg-white p-5 shadow-xl rounded-lg transform transition-all hover:scale-105"
+      >
+        <h1 class="text-xl text-center font-semibold">
+          A Game Changer for My Career
+        </h1>
+        <p class="text-justify mt-2">
+          TKR Interview Bits helped me prepare confidently for my interviews.I
+          landed my dream job!
+        </p>
         <p class="text-center mt-24">~Jasprit Bumrah</p>
       </div>
-      <div class="w-[300px] h-[300px] bg-white p-5 shadow-xl rounded-lg transform transition-all hover:scale-105">
-        <h1 class="text-xl text-center font-semibold">A Valuable Resource for Job Seekers</h1>
-        <p class="text-justify mt-2">The detailed interview experiences from professionals gave me a significant edge in my job search.</p>
+      <div
+        class="w-[300px] h-[300px] bg-white p-5 shadow-xl rounded-lg transform transition-all hover:scale-105"
+      >
+        <h1 class="text-xl text-center font-semibold">
+          A Valuable Resource for Job Seekers
+        </h1>
+        <p class="text-justify mt-2">
+          The detailed interview experiences from professionals gave me a
+          significant edge in my job search.
+        </p>
         <p class="text-center mt-24">~Suresh Raina</p>
       </div>
-      <div class="w-[300px] h-[300px] bg-white p-5 shadow-xl rounded-lg transform transition-all hover:scale-105">
-        <h1 class="text-xl text-center font-semibold">Essential for Interview Prep</h1>
-        <p class="text-justify mt-2">The real-world examples helped me anticipate questions and refine my answers. I highly recommend it!</p>
+      <div
+        class="w-[300px] h-[300px] bg-white p-5 shadow-xl rounded-lg transform transition-all hover:scale-105"
+      >
+        <h1 class="text-xl text-center font-semibold">
+          Essential for Interview Prep
+        </h1>
+        <p class="text-justify mt-2">
+          The real-world examples helped me anticipate questions and refine my
+          answers. I highly recommend it!
+        </p>
         <p class="text-center mt-24">~Virat Kohli</p>
       </div>
     </div>
@@ -123,50 +216,95 @@
   <!-- Page 4: FAQ Section -->
   <div id="page4" class="w-[85%] mx-auto min-h-[90vh] relative">
     <div class="flex justify-center my-10">
-      <h1 class="text-3xl text-lime-500 font-semibold">Frequently Asked Questions</h1>
+      <h1 class="text-3xl text-lime-500 font-semibold">
+        Frequently Asked Questions
+      </h1>
     </div>
     <div class="w-full flex flex-col gap-5">
       <!-- FAQ Items -->
-      <div class="w-full h-[12vh] flex justify-between items-center px-5 bg-[#24E400] text-white rounded-lg shadow-md cursor-pointer faq-item">
+      <div
+        class="w-full h-[12vh] flex justify-between items-center px-5 bg-[#24E400] text-white rounded-lg shadow-md cursor-pointer faq-item"
+      >
         <h1 class="text-2xl font-semibold">What is TKR Interview Bits?</h1>
         <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
       </div>
-      <div class="w-full px-5 text-white text-lg mb-4 text-justify faq-answer hidden">
-        TKR Interview Bits is a web platform where individuals can share their real interview experiences with top companies, providing valuable insights for job seekers.
+      <div
+        class="w-full px-5 text-white text-lg mb-4 text-justify faq-answer hidden"
+      >
+        TKR Interview Bits is a web platform where individuals can share their
+        real interview experiences with top companies, providing valuable
+        insights for job seekers.
       </div>
-      <div class="w-full h-[12vh] flex justify-between items-center px-5 bg-[#24E400] text-white rounded-lg shadow-md cursor-pointer faq-item">
-        <h1 class="text-2xl font-semibold">How can I contribute to the platform?</h1>
+      <div
+        class="w-full h-[12vh] flex justify-between items-center px-5 bg-[#24E400] text-white rounded-lg shadow-md cursor-pointer faq-item"
+      >
+        <h1 class="text-2xl font-semibold">
+          How can I contribute to the platform?
+        </h1>
         <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
       </div>
-      <div class="w-full px-5 text-white text-lg mb-4 text-justify faq-answer hidden">
-        Anyone can contribute by signing up and sharing their interview experiences. This helps others prepare better.
+      <div
+        class="w-full px-5 text-white text-lg mb-4 text-justify faq-answer hidden"
+      >
+        Anyone can contribute by signing up and sharing their interview
+        experiences. This helps others prepare better.
+      </div>
+      <div
+        class="w-full h-[12vh] flex justify-between items-center px-5 bg-[#24E400] text-white rounded-lg shadow-md cursor-pointer faq-item"
+      >
+        <h1 class="text-2xl font-semibold">
+          Is there a cost to use TKR Interview Bits?
+        </h1>
+        <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
+      </div>
+      <div
+        class="w-full px-5 text-white text-lg mb-4 text-justify faq-answer hidden"
+      >
+        No, TKR Interview Bits is completely free to use for both contributors
+        and readers.
+      </div>
+      <div
+        class="w-full h-[12vh] flex justify-between items-center px-5 bg-[#24E400] text-white rounded-lg shadow-md cursor-pointer faq-item"
+      >
+        <h1 class="text-2xl font-semibold">
+          Can I edit or delete my shared experience?
+        </h1>
+        <div class="text-2xl"><i class="ri-arrow-down-line"></i></div>
+      </div>
+      <div
+        class="w-full px-5 text-white text-lg mb-4 text-justify faq-answer hidden"
+      >
+        Yes, you can edit or delete your shared interview experiences at any
+        time by logging into your account.
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="w-full bg-[#24E400] text-white py-6 mt-12">
+  <footer class="w-full bg-slate-800 text-white py-6 mt-12">
     <div class="flex justify-center">
       <div class="text-center">
         <p class="text-xl font-semibold">TKR Interview Bits</p>
-        <p class="mt-2 text-sm">© 2024 All Rights Reserved | Made with ❤️ by Krishna Chaitanya</p>
+        <p class="mt-2 text-sm">
+          © 2024 All Rights Reserved | Made with ❤️ by Krishna Chaitanya
+        </p>
       </div>
     </div>
   </footer>
-
 </main>
 
 <%- include('./partials/footer') %>
 
 <!-- Script for FAQ Toggle -->
 <script>
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    item.addEventListener('click', () => {
+  const faqItems = document.querySelectorAll(".faq-item");
+  faqItems.forEach((item) => {
+    item.addEventListener("click", () => {
       const answer = item.nextElementSibling;
-      answer.classList.toggle('hidden');
-      item.querySelector('i').classList.toggle('ri-arrow-up-line');
-      item.querySelector('i').classList.toggle('ri-arrow-down-line');
+      answer.classList.toggle("hidden");
+      item.querySelector("i").classList.toggle("ri-arrow-up-line");
+      item.querySelector("i").classList.toggle("ri-arrow-down-line");
     });
   });
+
 </script>

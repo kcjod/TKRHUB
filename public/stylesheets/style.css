@@ -64,6 +64,14 @@ button:hover {
   transform: translateY(-10px);
 }
 
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
 
 
 @media (max-width: 1024px) {

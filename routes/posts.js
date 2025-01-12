@@ -1,27 +1,37 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema({
-  Truncatedcontent: {
+  title: {
     type: String,
+  },
+  company: {
+    type: String,
+    required: false,
   },
   content: {
     type: String,
     required: true,
   },
-  date:{
+  date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    set: (value) => {
+      const date = new Date(value);
+      date.setUTCHours(0, 0, 0, 0);
+      return date;
+    },
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: "User",
   },
-  likes: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  }],
-  comments: []
-})
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  comments: [],
+});
 
-
-module.exports = mongoose.model('Post',postSchema);
+module.exports = mongoose.model("Post", postSchema);
